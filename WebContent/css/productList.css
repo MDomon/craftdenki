@@ -1,0 +1,240 @@
+
+
+
+	@CHARSET "UTF-8";
+/*-------------------------------------
+	共通
+-------------------------------------*/
+	body{
+		margin:0;
+		padding:0;
+		line-height:1.6;
+		letter-spacing:1px;
+		font-family:Verdana,Helvetica,sans-serif;
+		font-size:12px;
+		color:#333;
+		background:#fff;
+	}
+	table{
+		text-align:center;
+		margin:0 auto;
+	}
+
+	h3{
+		border-bottom:solid black 1px;
+	}
+
+/*==================================ボタンcss===========================================*/
+	/*------------------共通部分------------------*/
+		input[type="submit"], input[type="button"]{
+				border-radius: 5px;
+			    -webkit-border-radius: 5px;
+			    -moz-border-radius: 5px;
+			    font-weight: bold;
+				background: #3f3f3f;
+				color: #ffffff;
+				box-shadow: 0 2px black;
+				width:100px;
+				height:30px;
+				text-align:center;
+				margin-right:10px;
+			}
+		input[type="submit"]:hover,  input[type="button"]:hover{
+		        -ms-transform: translateY(2px);
+			    -webkit-transform: translateY(2px);
+			    transform: translateY(2px);
+			    border-bottom: none;
+			    box-shadow: none;
+			}
+
+		/*------------------個別部分------------------*/
+		.DetailsList input[type="submit"]{
+			width:auto;
+		}
+
+/*==================================背景css===========================================*/
+	/*------------------共通部分-----------------*/
+
+		/*--------------未定義--------------*/
+
+
+/*==================================文字レイアウトcss===========================================*/
+	/*------------------共通部分------------------*/
+		/*
+		body{
+			line-height:1.6;
+			letter-spacing:1px;
+			font-family:Verdana,Helvetica,sans-serif;
+			font-size:12px;
+			color:#333;
+		}
+		*/
+
+
+
+
+/*==================================テーブルcss===========================================*/
+	/*------------------共通部分------------------*/
+		/*
+		table{
+			text-align:center;
+			margin:0 auto;
+		}
+		*/
+
+	/*------------------各ページ------------------*/
+
+
+
+/*==================================入力フォームcss===========================================*/
+	/*------------------共通部分------------------*/
+
+		/*--------------未定義--------------*/
+
+	/*------------------各ページ------------------*/
+
+
+
+
+/*---------------------------domon---original----------------------*/
+
+
+/* --- リストエリア --- */
+ul.thumbnail {
+width: 91%; /* リストエリアの幅 */
+margin: 0;
+padding: 30px 0 0; /* リストエリアのパディング（上、左右、下） */
+list-style-type: none;
+
+}
+
+/* --- リスト項目 --- */
+ul.thumbnail li {
+width: 320px; /* 項目の幅 */
+float: left;
+}
+
+/* --- 項目内容 --- */
+ul.thumbnail dl {
+width: 280px; /* 内容の幅 */
+margin: 0 auto; /* 内容のセンタリング */
+font-size: 80%;
+text-align:center;
+}
+
+/* --- 写真エリア --- */
+ul.thumbnail dt {
+/* height: 102px; */ /* 写真エリアの高さ（dt要素の高さを指定する場合） */
+margin: 30px 0; /* 写真エリアの下マージン */
+}
+ul.thumbnail dt img {
+
+}
+
+/* --- キャプションエリア --- */
+ul.thumbnail dd {
+margin: 0 0 3px; /* キャプションエリアのマージン（上、左右、下） */
+height: 6.5em; /* キャプションエリアの高さ */
+
+
+margin:0;
+padding:0;
+text-align:left;
+margin-right:auto;
+border-collapse: collapse;
+}
+
+/* --- clearfix --- */
+.clearFix:after {
+content: ".";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}
+.clearFix {
+min-height: 1px;
+}
+
+.list1{
+border: 1px solid black;
+border-radius: 20% ;
+margin:0px 0px 60px 65px;
+box-shadow:1px 1px 5px #000;
+background-image: url("../images/mokume1.jpg");
+}
+.list1:hover {
+    box-shadow:1px 1px 10px #000;
+}
+
+.detailsList{
+	border: 1px solid black;
+    border-radius: 20%;
+    box-shadow: 1px 1px 5px #000;
+    background-image: url(../images/mokume1.jpg);
+    width: 50%;
+    /* text-align: center; */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    margin-top: 110px;
+
+}
+
+.detailsTable{
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:30px;
+	margin-bottom:30px;
+	border-style: none;
+}
+.detailsTable tr, .detailsTable tr{
+	border-bottom: 1px solid black;
+}
+
+.detailsTable span{
+	width: auto;
+}
+.nowrap{
+	white-space: nowrap;
+}
+
+
+.ProductList {
+    width: 1283px;
+
+
+}
+
+
+.DetailsList{
+	text-align:center;
+	width:1224px;
+}
+
+.pagenext{
+	float:right;
+	margin-right:500px;
+	margin-top:-40px;
+}
+
+.pageback{
+	float:left;
+	margin-left:500px;
+	margin-top:-40px;
+}
+
+.pageSelect{
+	font-size:20px;
+	margin:10px;
+	text-align:center;
+}
+
+pd-cart{
+	margin-top:100px;
+}
+
+
+
+

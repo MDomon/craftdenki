@@ -1,0 +1,646 @@
+
+
+@CHARSET "UTF-8";
+
+
+/*新規ユーザー登録画面、ユーザー情報変更画面、お届け先情報変更画面で使用*/
+
+.wideBox{
+	width:900px;
+	background-color:#ffffff;
+	margin:0 auto;
+}
+
+table.userCreateTable{
+			width:600px;
+			border-collapse:collapse;
+			font-size:0.8em;
+			border:1px #cccccc solid;
+			}
+
+th.userCreateTh{
+			position:relative;
+			border-left:6px solid #cccccc;
+			/*↑左側の色*/
+			background-color:#efefef;
+						width:150px;
+			}
+
+tr.userCreateTr{
+			padding:10px;
+			border-top:1px solid #cccccc;
+			height:80px;
+			}
+
+td.userCreateTd{
+			text-align:left;
+}
+
+em.userCreateEm{
+			color:#ff0000;
+			font-size:13px;
+			text-align:right;
+			position:absolute; top:10px; right:5px;
+			}
+
+
+ input[type="button"].userCreateButton,input[type="submit"].userCreateButton{
+	width:200px;
+	margin:0 auto;
+	margin-left:550px;
+	margin-top:10px;
+	}
+
+
+/*------------------------------------------------------------ マイページ用 -----------------------------------------------------------------------*/
+
+table.myPageTable{
+	width:430px;
+	/*position:abusolute; left:10px; top:150px;*/
+	border-collapse:collapse;
+	margin-top:50px;
+	margin-bottom:30px;
+	/*float:left;*/
+
+}
+
+tr.myPageTr{
+	border-bottom:solid 1px #969696;
+}
+
+th.myPageTh{
+	width:150px;
+	/*border-right:solid 1px #969696;*/
+
+}
+
+td.myPageTd{
+
+}
+
+
+
+
+
+
+
+.myPageButtonBox{
+	width:900px;
+	margin-top:500px;
+	background-color:#ffffff;
+	margin:0 auto;
+}
+
+
+input[type="submit"].myPageButton{
+	float:left;
+	width:280px;
+	height:280px;
+	margin:0 auto;
+	background:#ffffff;
+	color:#000000;
+	font-size:2.7em;
+	border:solid 5px #000000;
+	margin-top:80px;
+	margin-left:10px;
+	margin-right:10px;
+
+}
+
+input[type="submit"].myPageButton.history{
+
+	background-image:url("../images/history.png");
+	background-repeat:no-repeat;
+	background-size:270px 270px;
+
+}
+
+input[type="submit"].myPageButton.favorite{
+
+	background-image:url("../images/star.png");
+	background-repeat:no-repeat;
+	background-size:270px 270px;
+}
+
+input[type="submit"].myPageButton.info{
+
+	background-image:url("../images/infoChange.png");
+	background-repeat:no-repeat;
+	background-size:270px 270px;
+}
+
+.clear{
+	clear: both;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*
+
+
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+*/
+
+@CHARSET "UTF-8";
+/*-------------------------------------
+	共通
+-------------------------------------*/
+	body{
+		margin:0;
+		padding:0;
+		line-height:1.6;
+		letter-spacing:1px;
+		font-family:Verdana,Helvetica,sans-serif;
+		font-size:12px;
+		color:#333;
+		background:#fff;
+	}
+	table{
+		text-align:center;
+		margin:0 auto;
+	}
+
+	.main{
+		margin-right:150px;
+		margin-left:150px;
+		margin-bottom:200px;
+	}
+
+	h1{
+		text-align:center;
+	}
+
+	h3{
+		border-bottom:solid black 1px;
+	}
+
+/*==================================ボタンcss===========================================*/
+	/*------------------共通部分------------------*/
+		input[type="submit"], input[type="button"]{
+				border-radius: 5px;
+			    -webkit-border-radius: 5px;
+			    -moz-border-radius: 5px;
+			    font-weight: bold;
+				background: #3f3f3f;
+				color: #ffffff;
+				box-shadow: 0 2px black;
+				width:auto;
+				height:30px;
+				text-align:center;
+				margin-right:10px;
+			}
+		input[type="submit"]:hover,  input[type="button"]:hover{
+		        -ms-transform: translate3d;;
+			    -webkit-transform: translate3d;;
+			    transform: translate3d;;
+			    border-bottom: none;
+			    box-shadow: none;
+			}
+	/*------------------各ページボタンcss------------------*/
+		/* 商品表内 */
+			.manageTable input[type="submit"]{
+				width: 100%;
+				margit: 0px;
+			}
+		/* 入力フォーム内 */
+			.input-form input[type="submit"]{
+				width: 100px;
+				margin: 10px 0px 30px 20px;
+			}
+		/* 確認画面 */
+			.m-log input[type="submit"], .m-log input[type="button"]{
+				width: 100px;
+				margin: 10px 0px 30px 0px;
+			}
+		/* 管理者Home */
+			#m-home input[type="submit"]{
+				width: 100px;
+				float: right;
+				position: relative;
+				left: 200px;
+			}
+
+
+		/* マイページ用 */
+		input[type="submit"].myPageButton{
+			float:left;
+			width:280px;
+			height:280px;
+			margin:0 auto;
+			background:#ffffff;
+			color:#000000;
+			font-size:2.7em;
+			border:solid 5px #000000;
+			margin-top:20px;
+			margin-left:10px;
+			margin-right:10px;
+
+		}
+
+		input[type="submit"].myPageButton.history{
+
+			background-image:url("../images/history.png");
+			background-repeat:no-repeat;
+			background-size:270px 270px;
+
+		}
+
+		input[type="submit"].myPageButton.favorite{
+
+			background-image:url("../images/star.png");
+			background-repeat:no-repeat;
+			background-size:270px 270px;
+		}
+
+		input[type="submit"].myPageButton.info{
+
+			background-image:url("../images/infoChange.png");
+			background-repeat:no-repeat;
+			background-size:270px 270px;
+		}
+
+		.clear{
+			clear: both;
+		}
+
+
+/*==================================背景css===========================================*/
+	/*------------------共通部分-----------------*/
+
+		/*--------------未定義--------------*/
+
+	/*------------------各ページ-----------------*/
+		/* 背景画像基本設定 */
+		.back-image{
+			/* 画像を常に天地左右の中央に配置 */
+			background-position: center center;
+
+			/* 画像をタイル状に繰り返し表示しない */
+			background-repeat: no-repeat;
+
+			/* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+			background-attachment: fixed;
+
+			/* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+			background-size: cover;
+
+			/* 背景画像が読み込まれる前に表示される背景のカラー */
+			background-color: #464646;
+		}
+		/* 階段写真 */
+			.step1{
+				/* 画像ファイルの指定 */
+			background-image: url("../images/step1.png");
+			}
+			.step2{
+				/* 画像ファイルの指定 */
+			background-image: url("../images/step2.png");
+			}
+			.step3{
+				/* 画像ファイルの指定 */
+			background-image: url("../images/step3.png");
+			}
+			.step4{
+				/* 画像ファイルの指定 */
+			background-image: url("../images/step4.png");
+			}
+			.step5{
+				/* 画像ファイルの指定 */
+			background-image: url("../images/step5.png");
+			}
+/*==================================文字レイアウトcss===========================================*/
+	/*------------------共通部分------------------*/
+		/*
+		body{
+			line-height:1.6;
+			letter-spacing:1px;
+			font-family:Verdana,Helvetica,sans-serif;
+			font-size:12px;
+			color:#333;
+		}
+		*/
+
+	/*------------------各ページ------------------*/
+		/* 管理者タイトル */
+			#m-title{
+				width:100%;
+				text-align:center;
+				font-size:56px;
+				font-weight: bold;
+				/* ふち文字 */
+				color: white;
+				text-shadow:
+		        black 5px 5px 0, black -2px -2px 0,/*右下、左上*/
+		        black -2px 2px 0, black 2px -2px 0,/*右上、左下*/
+		        black 0px 2px 0, black  0 -2px 0,/*右、左*/
+		        black -2px 0 0, black 2px 0 0;/*上、下*/
+			}
+
+		/* 管理者見出し */
+			.m-index{
+				font-size: 32px;
+				margin-left: 5%;
+				font-weight: bold;
+				/* ふち文字 */
+				color: white;
+				text-shadow:
+		        #606060 3px 3px 0, black -1px -1px 0,/*右下、左上*/
+		        black -1px 1px 0, black 1px -1px 0,/*右上、左下*/
+		        black 0px 1px 0, black  0-1px 0,/*右、左*/
+		        black -1px 0 0, black 1px 0 0;/*上、下*/
+			}
+
+		/* エラーメッセージ */
+			.errorMessage{
+				color: red;
+				text-align: center;
+				padding-bottom:40px;
+				font-size: 30px;
+				font-wight:bold;
+			}
+		/* 確認画面 */
+		.m-log{
+			font-size: 16px;
+			margin-left: 5%;
+			font-weight: bold;
+			/* ふち文字 */
+			color: white;
+			text-shadow:
+	        black 1px 1px 0, black -1px -1px 0,/*右下、左上*/
+	        black -1px 1px 0, black 1px -1px 0,/*右上、左下*/
+	        black 0px 1px 0, black  0-1px 0,/*右、左*/
+	        black -1px 0 0, black 1px 0 0;/*上、下*/
+		}
+		.m-log span{
+			text-shadow:
+	        #606060 3px 3px 0, black -1px -1px 0,/*右下、左上*/
+	        black -1px 1px 0, black 1px -1px 0,/*右上、左下*/
+	        black 0px 1px 0, black  0-1px 0,/*右、左*/
+	        black -1px 0 0, black 1px 0 0;/*上、下*/
+		}
+
+
+/*==================================テーブルcss===========================================*/
+	/*------------------共通部分------------------*/
+		/*
+		table{
+			text-align:center;
+			margin:0 auto;
+		}
+		*/
+
+	/*------------------各ページ------------------*/
+
+		/* 管理者テーブル */
+
+			table.manageTable table, table.manageTable th, table.manageTable td {
+				border-collapse: collapse;
+				border: 1px solid #ccc;
+				line-height: 1.5;
+			}
+
+			table.manageTable th, #table-total td {
+				padding: 10px;
+				font-weight: bold;
+				vertical-align: top;
+				background: #3f3f3f;
+				color: #ffffff;
+			}
+
+			table.manageTable td {
+				padding: 10px;
+				vertical-align: top;
+			}
+
+			table.manageTable tr:nth-child(2n) {
+				background: #d9d9d9;
+			}
+			table.manageTable tr:nth-child(2n-1) {
+				background: white;
+			}
+				/* 数値入力を右寄せ */
+				table.manageTable input[type="text"]{
+					text-align: right;
+					width: 60px;
+					padding: 0px;
+				}
+				table.manageTable input[type="text"]:focus{
+				    box-shadow: 0 0 7px #ff0000;  /* 入力欄の色を変える */
+				    border: 1px solid #ff0000;    /* 入力欄の色を変える */
+				}
+
+/*==================================入力フォームcss===========================================*/
+	/*------------------共通部分------------------*/
+
+		/*--------------未定義--------------*/
+
+	/*------------------各ページ------------------*/
+
+		/* 管理者フォーム */
+
+			/* フォームの形やフォント */
+				.input-form {
+					color: white;
+					text-shadow:
+				       #606060 3px 3px 0, black -1px -1px 0,/*右下、左上*/
+				        black -1px 1px 0, black 1px -1px 0,/*右上、左下*/
+				        black 0px 1px 0, black  0-1px 0,/*右、左*/
+				        black -1px 0 0, black 1px 0 0;/*上、下*/
+					padding-left: 15%;
+			    	position: relative;
+			    	padding-top: 1.5rem;
+				}
+				.input-form input[type="text"],
+				.input-form select,
+				.input-form textarea {
+				    padding: 0.8em;
+				    outline: none;
+				    border: 1px solid #DDD;
+				    font-size: 16px;
+				    box-shadow: 0 0 7px #606060;
+				    border: 1px solid #606060;
+				}
+				.input-form textarea {
+					width: 300px;
+					height: 100px;
+				}
+			/* エフェクト */
+				.input-form select:focus {
+				    box-shadow: 0 0 7px #ff0000;  /* 入力欄の色を変える */
+				    border: 1px solid #ff0000;    /* 入力欄の色を変える */
+				}
+				.input-form input[type="text"]:focus,
+				.input-form textarea:focus,
+				.input-form texture:focus {
+				    box-shadow: 0 0 7px #ff0000;  /* 入力欄の色を変える */
+				    border: 1px solid #ff0000;    /* 入力欄の色を変える */
+				    width: 500px;                 /* 入力欄の幅を伸ばす */
+				}
+			/* 入力後フォームの右へplaceholderの内容を表示 */
+				label {
+				    top: 0;
+				    font-size: var(--font-size-small);
+				    opacity: 1;
+				    transform: translateY(0);
+				    transition: all 0.2s ease-out;
+				}
+
+				input:placeholder-shown + label {
+				    opacity: 0;
+				    transform: translateY(1rem);
+				}
+			/* 入力項目名css */
+				.input-form span{
+					font-size:20px;
+					font-weight: bold;
+				}
+			/* 必須css */
+				.input-form  .hissu{
+					font-size:10px;
+					padding: 5px;
+					color: white;
+					background-color: red;
+					border-radius: 5px;        /* CSS3草案 */
+				    -webkit-border-radius: 5px;    /* Safari,Google Chrome用 */
+				    -moz-border-radius: 5px;   /* Firefox用 */
+				}
+
+
+
+		/* ユーザー登録＆変更フォーム */
+
+				.wideBox{
+					width:900px;
+					background-color:#ffffff;
+					margin:0 auto;
+				}
+
+				table.userCreateTable{
+					width:600px;
+					border-collapse:collapse;
+					font-size:0.8em;
+					border:1px #cccccc solid;
+				}
+
+				th.userCreateTh{
+					position:relative;
+					border-left:6px solid #cccccc;
+						/*↑左側の色*/
+					background-color:#efefef;
+					width:150px;
+				}
+
+				tr.userCreateTr{
+					padding:10px;
+					border-top:1px solid #cccccc;
+					height:40px;
+				}
+
+				td.userCreateTd{
+					text-align:left;
+				}
+
+				em.userCreateEm{
+					color:#ff0000;
+					font-size:13px;
+					text-align:right;
+					position:absolute; top:10px; right:5px;
+				}
+
+
+ 				input[type="button"].userCreateButton,input[type="submit"].userCreateButton{
+					width:200px;
+					margin:0 auto;
+					margin-left:550px;
+					margin-top:10px;
+				}
+
+
+
+/*==================================アイテム表示css===========================================*/
+	/*------------------共通部分------------------*/
+
+
+
+
+.ph-box {
+    margin-bottom: 32px;
+    margin-top: 3px;
+    border-top: 2px dotted #b1b1b1;
+    border-bottom: 2px dotted #b1b1b1;
+    width: 550px;
+    margin-left: 330px;
+    padding-left: 76px;
+    padding-top: 33px;
+}
+
+
+.ph-check {
+    float: left;
+    left: 100px;
+    margin-top: 50px;
+    margin-left: -130px;
+}
+
+.delete23 {
+	float: right;
+	margin-top:100px;
+}
+
+
+.iFP {
+    margin-top: -41px;
+    margin-left: 28px;
+    float:right;
+}
+
+
+
+/*==============================ログイン============================*/
+
+.Abox {
+    width: 1400px;
+    height: 340px;
+}
+
+
+
+.Bbox {
+	width: 550px;
+	height: 330px;
+	border: 1px solid black;
+	float: left;
+}
+
+#sbox {
+	float: left;
+	width: 170px;
+	border: 2px solid white;
+}
+
+#box {
+	text-decoration: underline;
+	position: center;
+	font-size: 22px;
+	text-align: center;
+}
+#message{
+text-align:center;
+}
+
+td {
+	text-align: left;
+}
+
+
+
+

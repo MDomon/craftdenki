@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<constant name="struts.ui.theme" value="simple" />
+
+	<package name="com.internousdevwork.craftdenki.action" extends="struts-default">
+
+
+		<!-- 商品一覧画面 （土門）START -->
+		<!-- ProductListAction -->
+		<action name="ProductListAction"
+			class="com.internousdev.craftdenki.action.ProductListAction" method="execute">
+			<result name="success">productList.jsp</result>
+		</action>
+
+		<!-- 商品詳細画面 -->
+		<!-- ProductDetailsAction -->
+		<action name="ProductDetailsAction"
+			class="com.internousdev.craftdenki.action.ProductDetailsAction"
+			method="execute">
+			<result name="success">productDetails.jsp</result>
+		</action>
+		<!-- 土門 END -->
+
+
+
+		<!-- ___________________管理者機能(岡本) _________START_________ -->
+
+		<!-- ProductManageAction --><!-- 商品管理 -->
+		<action name="ProductManageAction"
+			class="com.internousdev.craftdenki.action.ProductManageAction"
+			method="execute">
+
+			<result name="success">productManage.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- CheckSupplyAction --><!-- 仕入確認 -->
+		<action name="CheckSupplyAction"
+			class="com.internousdev.craftdenki.action.CheckSupplyAction" method="execute">
+
+			<result name="success">supplyConfirm.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+			<result name="error1">productManage.jsp</result> <!-- 入力エラーあり -->
+
+		</action>
+
+		<!-- SupplyCompleteAction --><!-- 仕入完了 -->
+		<action name="SupplyCompleteAction"
+			class="com.internousdev.craftdenki.action.SupplyCompleteAction"
+			method="execute">
+
+			<result name="success">supplyComplete.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- ProductHideConfirmAction --><!-- 商品非表示確認 -->
+		<action name="ProductHideConfirmAction"
+			class="com.internousdev.craftdenki.action.ProductHideConfirmAction"
+			method="execute">
+
+			<result name="success">productHideConfirm.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- ProductHideCompleteAction --><!-- 商品非表示完了 -->
+		<action name="ProductHideCompleteAction"
+			class="com.internousdev.craftdenki.action.ProductHideCompleteAction"
+			method="execute">
+
+			<result name="success">productHideComplete.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- ProductRestoreAction --><!-- 商品復元画面 -->
+		<action name="ProductRestoreAction"
+			class="com.internousdev.craftdenki.action.ProductRestoreAction"
+			method="execute">
+
+			<result name="success">productRestore.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- ProductRestoreConfirmAction --><!-- 商品復元確認 -->
+		<action name="ProductRestoreConfirmAction"
+			class="com.internousdev.craftdenki.action.ProductRestoreConfirmAction"
+			method="execute">
+
+			<result name="success">productRestoreConfirm.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- ProductRestoreCompleteAction --><!-- 商品復元完了 -->
+		<action name="ProductRestoreCompleteAction"
+			class="com.internousdev.craftdenki.action.ProductRestoreCompleteAction"
+			method="execute">
+
+			<result name="success">productRestoreComplete.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- ProductDataChangeAction --><!-- 商品情報変更 -->
+		<action name="ProductDataChangeAction"
+			class="com.internousdev.craftdenki.action.ProductDataChangeAction"
+			method="execute">
+
+			<result name="success">productDataChange.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- CheckProductChangeAction --><!-- 商品情報変更確認・チェック -->
+		<action name="CheckProductChangeAction"
+			class="com.internousdev.craftdenki.action.CheckProductChangeAction"
+			method="execute">
+
+			<result name="success">productDataChangeConfirm.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+			<result name="error1">productDataChange.jsp</result> <!-- 入力エラーあり -->
+
+		</action>
+
+		<!-- ProductDataChangeCompleteAction --><!-- 商品情報変更完了 -->
+		<action name="ProductDataChangeCompleteAction"
+			class="com.internousdev.craftdenki.action.ProductDataChangeCompleteAction"
+			method="execute">
+
+			<result name="success">productDataChangeComplete.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- CheckProductRegistAction --><!-- 商品登録チェック -->
+		<action name="CheckProductRegistAction"
+			class="com.internousdev.craftdenki.action.CheckProductRegistAction"
+			method="execute">
+
+			<result name="success">productRegistConfirm.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+			<result name="error1">productManage.jsp</result> <!-- 入力エラーあり -->
+
+		</action>
+
+		<!-- ProductRegistCompleteAction --><!-- 新商品登録完了 -->
+		<action name="ProductRegistCompleteAction"
+			class="com.internousdev.craftdenki.action.ProductRegistCompleteAction"
+			method="execute">
+
+			<result name="success">productRegistComplete.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- GoManagerHomeAction --><!-- 管理者HOMEへ遷移 -->
+		<action name="GoManagerHomeAction"
+			class="com.internousdev.craftdenki.action.GoManagerHomeAction"
+			method="execute">
+
+			<result name="success">managerHome.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- SalesManageAction --><!-- 売上管理へ遷移 -->
+		<action name="SalesManageAction"
+			class="com.internousdev.craftdenki.action.SalesManageAction" method="execute">
+
+			<result name="success">salesManage.jsp</result> <!-- 管理者判定成功 -->
+			<result name="error">errorM.jsp</result> <!-- 管理者判定失敗 -->
+
+		</action>
+
+		<!-- ___________________管理者機能(岡本) _________END_________ -->
+
+		<!-- ___________________管理者機能(高橋) _________START_________ -->
+
+		<action name="LoginAction" class="com.internousdev.craftdenki.action.LoginAction"
+			method="execute">
+			<result name="error">login.jsp</result>
+			<result name="master">managerHome.jsp</result>
+			<result name="settlement">settlement0.jsp</result>
+			<result name="myPage">myPage.jsp</result>
+		</action>
+
+		<action name="PassAction" class="com.internousdev.craftdenki.action.PassAction"
+			method="execute">
+			<result name="success">changePassword.jsp</result>
+		</action>
+
+		<action name="Review1Action" class="com.internousdev.craftdenki.action.Review1Action"
+			method="execute">
+			<result name="success">review.jsp</result>
+		</action>
+
+		<action name="Review2Action" class="com.internousdev.craftdenki.action.Review2Action"
+			method="execute">
+			<result name="success">reviewComplete.jsp</result>
+		</action>
+
+		<action name="Review3Action" class="com.internousdev.craftdenki.action.Review3Action"
+			method="execute">
+			<result name="success">productList.jsp</result>
+		</action>
+
+		<!-- ___________________管理者機能(高橋) _________END_________ -->
+
+
+
+
+
+
+
+		<!-- ___________________Home画面から遷移(SANO) _________START_________ -->
+		<!-- GoLoginAction -->
+		<action name="GoLoginAction" class="com.internousdev.craftdenki.action.GoLoginAction"
+			method="execute">
+			<result name="success">login.jsp</result>
+		</action>
+
+		<!-- GoMyPageAction -->
+		<action name="GoMyPageAction"
+			class="com.internousdev.craftdenki.action.GoMyPageAction" method="execute">
+			<result name="success">myPage.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+
+
+
+
+
+		<!-- GoHelpAction -->
+		<action name="GoHelpAction" class="com.internousdev.craftdenki.action.GoHelpAction"
+			method="execute">
+			<result name="success">help.jsp</result>
+		</action>
+
+
+
+		<!-- StartAction(仮ID発行のため) -->
+		<action name="StartAction" class="com.internousdev.craftdenki.action.StartAction"
+			method="execute">
+			<result name="success">home.jsp</result>
+		</action>
+
+
+
+		<!-- ItemSearchAction -->
+		<action name="ItemSearchAction"
+			class="com.internousdev.craftdenki.action.ItemSearchAction" method="execute">
+			<result name="success">productList.jsp</result>
+		</action>
+
+
+		<!-- 決済機能 -->
+
+
+		<!-- SettlementAction -->
+		<action name="SettlementAction"
+			class="com.internousdev.craftdenki.action.SettlementAction" method="execute">
+			<result name="success">settlement.jsp</result>
+			<result name="login">login.jsp</result>
+			<result name="error">start.jsp</result>
+		</action>
+
+		<!-- SettlementConfirmAction -->
+		<action name="SettlementConfirmAction"
+			class="com.internousdev.craftdenki.action.SettlementConfirmAction"
+			method="execute">
+			<result name="success">settlementConfirm.jsp</result>
+		</action>
+
+		<!-- SettlementCompleteAction -->
+		<action name="SettlementCompleteAction"
+			class="com.internousdev.craftdenki.action.SettlementCompleteAction"
+			method="execute">
+			<!-- token使って2重送信を阻止したい -->
+			<!-- デフォルトinterceptor -->
+			<interceptor-ref name="defaultStack" />
+			<!-- tokenのinterceptor -->
+			<interceptor-ref name="token" />
+			<result name="invalid.token">refresh.jsp</result>
+			<result>settlementComplete.jsp</result>
+		</action>
+
+
+
+		<!-- DestinationChangeAction 決済画面での住所変更 -->
+		<action name="DestinationChangeAction"
+				class="com.internousdev.craftdenki.action.DestinationChangeAction"
+				method="execute">
+		<result name="success">settlement0.jsp</result>
+		</action>
+
+
+		<!-- DestinationChange0Action -->
+		<action name="DestinationChange0Action"
+				class="com.internousdev.craftdenki.action.DestinationChange0Action"
+				method="execute">
+		<result name="success">destinationChange.jsp</result>
+		</action>
+
+
+
+		<!-- 決済機能 (終) -->
+
+
+
+
+
+
+
+		<!-- ___________________Home画面から遷移(SANO) _________END_________ -->
+
+
+		<!-- 購入履歴画面（岡田） -->
+		<action name="PurchaseHistoryAction"
+			class="com.internousdev.craftdenki.action.PurchaseHistoryAction"
+			method="execute">
+			<result name="success">purchaseHistory.jsp</result>
+			<result name="error">login.jsp</result>
+			<result name="delete">purchaseHistory.jsp</result>
+			<result name="review">review.jsp</result>
+
+		</action>
+
+
+
+		<!-- ___________________ユーザー情報変更機能(雑賀) _________START_________ -->
+
+		<!-- UserInfoChangeAction -->
+		<action name="UserInfoChangeAction"
+			class="com.internousdev.craftdenki.action.UserInfoChangeAction"
+			method="execute">
+			<result name="success">userInfoChange.jsp</result>
+		</action>
+
+		<!-- UserInfoChangeConfirmAction -->
+		<action name="UserInfoChangeConfirmAction"
+			class="com.internousdev.craftdenki.action.UserInfoChangeConfirmAction"
+			method="execute">
+			<result name="success">userInfoChangeConfirm.jsp</result>
+			<result name="error">userInfoChange.jsp</result>
+		</action>
+
+		<!-- UserInfoChangeCompleteAction -->
+		<action name="UserInfoChangeCompleteAction"
+			class="com.internousdev.craftdenki.action.UserInfoChangeCompleteAction"
+			method="execute">
+			<result name="success">userInfoChangeComplete.jsp</result>
+		</action>
+
+		<!-- ___________________ユーザー情報変更機能(雑賀) _________END_________ -->
+
+
+		<!-- ___________________お気に入り(金田) _________END_________ -->
+		<!-- FavoriteAction -->
+
+		<action name="FavoriteAction"
+			class="com.internousdev.craftdenki.action.FavoriteAction" method="execute">
+			<result name="success">favorite.jsp</result>
+			<result name="error">home.jsp</result>
+		</action>
+
+		<!-- ___________________パスワード再設定(影山) _________START_________ -->
+
+		<!-- ChangePasswordAction -->
+		<action name="ChangePasswordAction"
+			class="com.internousdev.craftdenki.action.ChangePasswordAction"
+			method="execute">
+			<result name="success">checkUserId.jsp</result>
+		</action>
+
+		<!-- CheckUserIdAction -->
+		<action name="CheckUserIdAction"
+			class="com.internousdev.craftdenki.action.CheckUserIdAction" method="execute">
+			<result name="success">changePassword.jsp</result>
+			<result name="error">checkUserId.jsp</result>
+		</action>
+
+		<!-- ChangePasswordConfirmAction -->
+		<action name="ChangePasswordConfirmAction"
+			class="com.internousdev.craftdenki.action.ChangePasswordConfirmAction"
+			method="execute">
+			<result name="success">changePasswordConfirm.jsp</result>
+			<result name="error">changePassword.jsp</result>
+		</action>
+
+		<!-- ChangePasswordCompleteAction -->
+		<action name="ChangePasswordCompleteAction"
+			class="com.internousdev.craftdenki.action.ChangePasswordCompleteAction"
+			method="execute">
+			<result name="success">login.jsp</result>
+		</action>
+
+
+		<!-- ___________________パスワード再設定(影山) _________END_________ -->
+
+
+
+		<!-- ___________________カート機能(塩治) _________START_________ -->
+		<!-- CartAction -->
+		<action name="CartAction" class="com.internousdev.craftdenki.action.CartAction"
+			method="execute">
+			<result name="success">cartConfirm.jsp</result>
+			<result name="input">cartConfirm.jsp</result>
+			<result name="error">errorM.jsp</result>
+		</action>
+
+		<!-- LogoutAction -->
+		<action name="LogoutAction" class="com.internousdev.craftdenki.action.LogoutAction"
+			method="execute">
+			<result name="success">logout.jsp</result>
+		</action>
+		<!-- ___________________カート機能(塩治) _________END_________ -->
+
+
+
+
+		<!-- ___________________ユーザー登録機能(中島) _________START_________ -->
+		<!-- UserCreateAction -->
+		<action name="UserCreateAction"
+			class="com.internousdev.craftdenki.action.UserCreateAction" method="execute">
+			<result name="success">userCreate.jsp</result>
+		</action>
+
+		<!-- UserCreateConfirmAction -->
+		<action name="UserCreateConfirmAction"
+			class="com.internousdev.craftdenki.action.UserCreateConfirmAction"
+			method="execute">
+			<result name="success">userCreateConfirm.jsp</result>
+			<result name="error">userCreate.jsp</result>
+		</action>
+		<!-- UserCreateCompleteAction -->
+		<action name="UserCreateCompleteAction"
+			class="com.internousdev.craftdenki.action.UserCreateCompleteAction"
+			method="execute">
+			<result name="success">userCreateComplete.jsp</result>
+		</action>
+		<!-- ___________________ユーザー登録機能(中島) _________END_________ -->
+
+	</package>
+
+</struts>
