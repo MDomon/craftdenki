@@ -14,7 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class ProductDetailsAction extends ActionSupport implements SessionAware {
 
-	//セッション情報取得
+	// セッション情報取得
 	public Map<String, Object> session;
 
 	private String id;
@@ -24,106 +24,92 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 	private int product_count;
 
 	private String item_stock;
-
+	private String error;
 	private int insertFlg;
 
 	private int price;
 	private int category_id;
 
-	//購入個数リスト
+	// 購入個数リスト
 	private List<Integer> stockList = new ArrayList<Integer>();
 
-	//商品詳細情報｢リスト
+	// 商品詳細情報｢リスト
 	public ProductDTO detail = new ProductDTO();
 	public List<ProductDTO> detailsList = new ArrayList<ProductDTO>();
 
+	// お勧めリスト情報
+	public List<ProductDTO> sugestList = new ArrayList<ProductDTO>();
 
-
-	//お勧めリスト情報
-		public List<ProductDTO> sugestList = new ArrayList<ProductDTO>();
-
-	//レビュー情報｢リスト
+	// レビュー情報｢リスト
 	public List<Review2DTO> reviewList = new ArrayList<Review2DTO>();
 
 	private ProductDetailsDAO productDetailsDAO = new ProductDetailsDAO();
 
+	public String execute() throws SQLException {
 
+		// String[] productIdList = product_id.split(", ", 0);
 
-	public String execute() throws SQLException{
-
-
-//		String[] productIdList = product_id.split(", ", 0);
-
-
-		//商品詳細情報取得メソッド
-		try{
+		// 商品詳細情報取得メソッド
+		try {
 
 			detail = productDetailsDAO.getProductDetailsInfo(product_id);
-			session.put("d_image_file_path", detail.getImage_file_path());
-			session.put("d_product_name_kana", detail.getProduct_name_kana());
-			session.put("d_product_name",detail.getProduct_name() );
-			session.put("d_product_description",detail.getProduct_description() );
-			session.put("d_product_price",detail.getPrice() );
-			session.put("d_release_date",detail.getRelease_date() );
-			session.put("d_release_company",detail.getRelease_company() );
-			session.put("d_item_stock",detail.getItem_stock() );
-			session.put("d_product_id", detail.getProduct_id());
-			session.put("d_product_count", detail.getProduct_count());
-			session.put("d_category_id",detail.getCategory_id());
+			if (detail != null) {
+				session.put("d_image_file_path", detail.getImage_file_path());
+				session.put("d_product_name_kana", detail.getProduct_name_kana());
+				session.put("d_product_name", detail.getProduct_name());
+				session.put("d_product_description", detail.getProduct_description());
+				session.put("d_product_price", detail.getPrice());
+				session.put("d_release_date", detail.getRelease_date());
+				session.put("d_release_company", detail.getRelease_company());
+				session.put("d_item_stock", detail.getItem_stock());
+				session.put("d_product_id", detail.getProduct_id());
+				session.put("d_product_count", detail.getProduct_count());
+				session.put("d_category_id", detail.getCategory_id());
+			}else{
 
+				return ERROR;
+			}
 
-//			System.out.println(detailsList);
-
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		// おすすめリスト情報取得
+		try {
+			sugestList = productDetailsDAO
+					.getSugestProductInfo(Integer.parseInt((session.get("d_category_id")).toString()));
 
-
-
-		//おすすめリスト情報取得
-		try{
-			sugestList = productDetailsDAO.getSugestProductInfo(Integer.parseInt((session.get("d_category_id")).toString()));
-			System.out.println(category_id+"aaa");
-			System.out.println(sugestList+"bbb");
-			System.out.println(sugestList.size()+"ccc");
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-
-		//レビュー情報取得メソッド
-		try{
+		// レビュー情報取得メソッド
+		try {
 
 			reviewList = productDetailsDAO.getReviewInfo(session.get("d_product_id").toString());
 
-//			System.out.println(reviewList);
-
-
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-
-		//1から在庫数までの選択表示用List
-		for(int i=1; i<= detail.getItem_stock() ; i++){
+		// 1から在庫数までの選択表示用List
+		for (int i = 1; i <= detail.getItem_stock(); i++) {
 			stockList.add(i);
-//			System.out.println("----在庫数");
-//			System.out.print(i + " ");
-//			System.out.println("-----------");
+
 		}
 
-		price=detail.getPrice();
-//		System.out.println("----------------");
-//		System.out.println("PRODUCTID : "+product_id);
-//		System.out.println("PRICE : " + price);
-//		System.out.println("----------------");
+		System.out.println(detail);
+		System.out.println(session.get("d_category_id"));
+		if (session.get("d_category_id").equals("")) {
+			return ERROR;
+		}
+
+		price = detail.getPrice();
+
 		String result = SUCCESS;
 		return result;
 
 	}
-
-
 
 	public Map<String, Object> getSession() {
 		return session;
@@ -160,31 +146,29 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 	public int getPrice() {
 		return price;
 	}
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
 
-
-
 	/**
 	 * insertFlgを取得します。
+	 *
 	 * @return insertFlg
 	 */
 	public int getInsertFlg() {
-	    return insertFlg;
+		return insertFlg;
 	}
-
-
 
 	/**
 	 * insertFlgを設定します。
-	 * @param insertFlg insertFlg
+	 *
+	 * @param insertFlg
+	 *            insertFlg
 	 */
 	public void setInsertFlg(int insertFlg) {
-	    this.insertFlg = insertFlg;
+		this.insertFlg = insertFlg;
 	}
-
-
 
 	public List<Integer> getStockList() {
 		return stockList;
@@ -210,30 +194,28 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 		this.productDetailsDAO = productDetailsDAO;
 	}
 
-
-
 	public String getId() {
 		return id;
 	}
-
-
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
-
-
 	public int getCategory_id() {
 		return category_id;
 	}
-
-
 
 	public void setCategory_id(int category_id) {
 		this.category_id = category_id;
 	}
 
+	public String getError() {
+		return error;
+	}
 
+	public void setError(String error) {
+		this.error = error;
+	}
 
 }

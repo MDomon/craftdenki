@@ -23,7 +23,7 @@ public class CheckSupplyAction extends ActionSupport implements SessionAware{
 	private String supply_count; //仕入数
 	private String supply_cost; //仕入原価
 
-	private int supplyCostAllTotal; //仕入値合計
+	private long supplyCostAllTotal; //仕入値合計
 
 	private String errorMessage;
 	private ArrayList<String> errorSupplyMessageList = new ArrayList<>();
@@ -88,7 +88,7 @@ public class CheckSupplyAction extends ActionSupport implements SessionAware{
 					dto.setItem_stock(Integer.parseInt(itemStockList[i]));
 					dto.setSupplyCount(Integer.parseInt(supplyCountList[i]));
 					dto.setSupplyCost(Integer.parseInt(supplyCostList[i]));
-					dto.setSupplyCostTotal(Integer.parseInt(supplyCostList[i]) * Integer.parseInt(supplyCountList[i]));
+					dto.setSupplyCostTotal(Long.parseLong(supplyCostList[i]) * Long.parseLong(supplyCountList[i]));
 
 
 					supplyList.add(dto);
@@ -169,8 +169,6 @@ public class CheckSupplyAction extends ActionSupport implements SessionAware{
 
 
 
-
-
 	public String getSupply_count() {
 		return supply_count;
 	}
@@ -195,6 +193,18 @@ public class CheckSupplyAction extends ActionSupport implements SessionAware{
 
 
 
+	public long getSupplyCostAllTotal() {
+		return supplyCostAllTotal;
+	}
+
+
+
+	public void setSupplyCostAllTotal(long supplyCostAllTotal) {
+		this.supplyCostAllTotal = supplyCostAllTotal;
+	}
+
+
+
 	public String getErrorMessage() {
 		return errorMessage;
 	}
@@ -203,30 +213,6 @@ public class CheckSupplyAction extends ActionSupport implements SessionAware{
 
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
-	}
-
-
-
-	public List<ProductDTO> getSupplyList() {
-		return supplyList;
-	}
-
-
-
-	public void setSupplyList(List<ProductDTO> supplyList) {
-		this.supplyList = supplyList;
-	}
-
-
-
-	public int getSupplyCostAllTotal() {
-		return supplyCostAllTotal;
-	}
-
-
-
-	public void setSupplyCostAllTotal(int supplyCostAllTotal) {
-		this.supplyCostAllTotal = supplyCostAllTotal;
 	}
 
 
@@ -243,6 +229,18 @@ public class CheckSupplyAction extends ActionSupport implements SessionAware{
 
 
 
+	public List<ProductDTO> getSupplyList() {
+		return supplyList;
+	}
+
+
+
+	public void setSupplyList(List<ProductDTO> supplyList) {
+		this.supplyList = supplyList;
+	}
+
+
+
 	public ArrayList<ProductDTO> getProductList() {
 		return productList;
 	}
@@ -252,6 +250,10 @@ public class CheckSupplyAction extends ActionSupport implements SessionAware{
 	public void setProductList(ArrayList<ProductDTO> productList) {
 		this.productList = productList;
 	}
+
+
+
+
 
 
 

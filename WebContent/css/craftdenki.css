@@ -667,3 +667,60 @@ pd-cart{
 }
 
 
+
+
+
+	/* sanoここから*/
+
+		.left1{
+		padding-left:12%;
+		}
+
+
+		.left2{
+			padding-left:8em;
+		}
+		.left6{
+		    float: right;
+    margin-right: 313px;
+}
+
+
+
+
+
+.blank {
+    padding-right: 43%;
+    float: right;
+}
+
+
+		.blank span{
+		display: inline-block;
+		width: 8em;
+		}
+
+		.phone{
+		padding-left:24px;
+		}
+
+
+		h4 {
+    padding-left: 189px;
+    float: left;
+    margin-top: 40px;
+}
+
+		.center{
+			text-align:center;
+		}
+
+.buyer {
+    margin-top: 20px;
+    padding-bottom: 40px;
+}
+
+.buyeritem {
+    margin-top: 40px;
+    padding-top: 30px;
+}

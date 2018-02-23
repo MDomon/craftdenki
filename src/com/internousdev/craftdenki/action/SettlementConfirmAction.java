@@ -26,6 +26,7 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 	private String releaseDate;
 	private String totalPrice;
 	private int finalPrice;
+	private String message;
 
 
 
@@ -68,6 +69,10 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 			finalPrice = finalPrice + cartList.get(i).getTotalPrice();
 		}
 		session.put("cartList", cartList);
+
+		if(cartList.isEmpty()){
+			message = "カートの中身がありません。";
+		}
 
 		return SUCCESS;
 	}
@@ -175,5 +180,14 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 
 }

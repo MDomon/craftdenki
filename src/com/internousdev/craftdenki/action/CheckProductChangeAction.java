@@ -32,6 +32,9 @@ public class CheckProductChangeAction extends ActionSupport implements SessionAw
 	private String releaseCompany; //発売会社
 	private String categoryName; //カテゴリ名
 
+
+
+
 	public String execute() throws SQLException{
 		String result=ERROR;
 
@@ -39,73 +42,100 @@ public class CheckProductChangeAction extends ActionSupport implements SessionAw
 		if(session.get("master_flg") == "1"){      //管理者判定
 			result = SUCCESS;
 
-			//カテゴリテーブルよりカテゴリリストを取得
-			CategoryDAO categoryDAO = new CategoryDAO();
-			categoryList = categoryDAO.getCategoryInfo();
-			//カテゴリ名を取得
-			for(int i = 0; i < categoryList.size(); i++) {
-				if(categoryList.get(i).getCategoryId().equals(categoryId)) {
-					this.categoryName = categoryList.get(i).getCategoryName();
-				}
-			}
+		//カテゴリを取得
+			getCategory();
+		//入力チェック
+			result = productCheck();
 
 
-			ProductListDAO dao = new ProductListDAO();
+			} else errorMessage = "不正なアクセスです。もう一度ログインをお願いいたします。";
 
-			InputChecker i = new InputChecker();
-
-			if(!(session.get("productId").toString().equals(productId)) && dao.existsProductId(productId)){
-				errorMessageList.add("入力された商品IDは既に存在します");
-				result = "error1";
-			}else if (!i.newProductIdChk(productId).equals("OK")) {
-				errorMessageList.add(i.newProductIdChk(productId));
-				result = "error1";
-			}
-
-			if (!i.newProductNameChk(productName).equals("OK")) {
-				errorMessageList.add(i.newProductNameChk(productName));
-				result = "error1";
-			}
-
-			if (!i.newProductNameKanaChk(productNameKana).equals("OK")) {
-				errorMessageList.add(i.newProductNameKanaChk(productNameKana));
-				result = "error1";
-			}
-
-			if (!i.newProductDescriptionChk(productDescription).equals("OK")) {
-				errorMessageList.add(i.newProductDescriptionChk(productDescription));
-				result = "error1";
-			}
-
-			if (!i.newCategoryIdChk(categoryId).equals("OK")) {
-				errorMessageList.add(i.newCategoryIdChk(categoryId));
-				result = "error1";
-			}
-
-			if (!i.newBuyPriceChk(price).equals("OK")) {
-				errorMessageList.add(i.newBuyPriceChk(price));
-				result = "error1";
-			}
-
-			if (!i.newReleaseDateChk(releaseDate).equals("OK")) {
-				errorMessageList.add(i.newReleaseDateChk(releaseDate));
-				result = "error1";
-			}
-
-			if (!i.newReleaseCompanyChk(releaseCompany).equals("OK")) {
-				errorMessageList.add(i.newReleaseCompanyChk(releaseCompany));
-				result = "error1";
-			}
-
-			if (!i.newProductImageChk(imageFileName).equals("OK")) {
-				errorMessageList.add(i.newProductImageChk(imageFileName));
-				result = "error1";
-			}
-
-		}else errorMessage = "不正なアクセスです。もう一度ログインをお願いいたします。";
 		return result;
 	}
 
+
+
+
+
+	/**
+	 * カテゴリリストとカテゴリ名を取得するメソッド
+	 */
+	private void getCategory(){
+		//カテゴリテーブルよりカテゴリリストを取得
+		CategoryDAO categoryDAO = new CategoryDAO();
+		categoryList = categoryDAO.getCategoryInfo();
+		//カテゴリ名を取得
+		for(int i = 0; i < categoryList.size(); i++) {
+			if(categoryList.get(i).getCategoryId().equals(categoryId)) {
+				this.categoryName = categoryList.get(i).getCategoryName();
+			}
+		}
+	}
+
+	/**
+	 * 入力情報をチェックして結果を返すメソッド
+	 * @return result
+	 * @throws SQLException
+	 */
+	private String productCheck() throws SQLException{
+		String result = SUCCESS;
+		ProductListDAO dao = new ProductListDAO();
+
+		InputChecker i = new InputChecker();
+
+		if(!(session.get("productId").toString().equals(productId)) && dao.existsProductId(productId)){
+			errorMessageList.add("入力された商品IDは既に存在します");
+			result = "checkErr";
+		}else if (!i.newProductIdChk(productId).equals("OK")) {
+			errorMessageList.add(i.newProductIdChk(productId));
+			result = "checkErr";
+		}
+
+		if (!i.newProductNameChk(productName).equals("OK")) {
+			errorMessageList.add(i.newProductNameChk(productName));
+			result = "checkErr";
+		}
+
+		if (!i.newProductNameKanaChk(productNameKana).equals("OK")) {
+			errorMessageList.add(i.newProductNameKanaChk(productNameKana));
+			result = "checkErr";
+		}
+
+		if (!i.newProductDescriptionChk(productDescription).equals("OK")) {
+			errorMessageList.add(i.newProductDescriptionChk(productDescription));
+			result = "checkErr";
+		}
+
+		if (!i.newCategoryIdChk(categoryId).equals("OK")) {
+			errorMessageList.add(i.newCategoryIdChk(categoryId));
+			result = "checkErr";
+		}
+
+		if (!i.newBuyPriceChk(price).equals("OK")) {
+			errorMessageList.add(i.newBuyPriceChk(price));
+			result = "checkErr";
+		}
+
+		if (!i.newReleaseDateChk(releaseDate).equals("OK")) {
+			errorMessageList.add(i.newReleaseDateChk(releaseDate));
+			result = "checkErr";
+		}
+
+		if (!i.newReleaseCompanyChk(releaseCompany).equals("OK")) {
+			errorMessageList.add(i.newReleaseCompanyChk(releaseCompany));
+			result = "checkErr";
+		}
+
+		if (!i.newProductImageChk(imageFileName).equals("OK")) {
+			errorMessageList.add(i.newProductImageChk(imageFileName));
+			result = "checkErr";
+		}
+		return result;
+	}
+	/*-----------------------------------------
+	 * getter,setter
+	 * ----------------------------------------
+	 */
 	public Map<String, Object> getSession() {
 		return session;
 	}

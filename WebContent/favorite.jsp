@@ -102,7 +102,7 @@
 
 
 			<div class="delete23">
-				<s:submit value="一括削除"/>
+				<s:submit value="削除"/>
 						<s:hidden name="deleteFlg" value="1" />
 					</div>
 

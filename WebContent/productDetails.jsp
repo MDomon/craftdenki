@@ -12,8 +12,8 @@
 
 
 <script type="text/javascript">
-	function goCartAction() {
-		document.getElementById('form').action = "CartAction";
+	function goCartInsertAction() {
+		document.getElementById('form').action = "CartInsertAction";
 	}
 
 	function goFavoriteAction() {
@@ -28,51 +28,51 @@
 	<div class="main">
 		<h3>商品詳細</h3>
 		<div class="DetailsList">
-				<div class="detailsList">
-					<div class="img">
-						<img class="image"
-							src="<s:property value='session.d_image_file_path'/>" alt="Photo"
-							width="300" height="240">
-					</div>
-					<table class="detailsTable">
-						<tr>
-							<td class="nowrap">商品名かな</td>
-							<td>:</td>
-							<td><s:property value="session.d_product_name_kana" /></td>
-						</tr>
-						<tr>
-							<td class="nowrap">商品名</td>
-							<td>:</td>
-							<td><s:property value="session.d_product_name" /></td>
-						</tr>
-						<tr>
-							<td class="nowrap">商品詳細</td>
-							<td>:</td>
-							<td><s:property value="session.d_product_description" /></td>
-						</tr>
-						<tr>
-							<td class="nowrap">価格</td>
-							<td>:</td>
-							<td>￥<s:property value="session.d_product_price" /> 円
-							</td>
-						</tr>
-						<tr>
-							<td class="nowrap">発売日</td>
-							<td>:</td>
-							<td><s:property value="session.d_release_date" /></td>
-						</tr>
-						<tr>
-							<td class="nowrap">販売会社</td>
-							<td>:</td>
-							<td><s:property value="session.d_release_company" /></td>
-						</tr>
-						<tr>
-							<td class="nowrap">在庫</td>
-							<td>:</td>
-							<td><s:property value="session.d_item_stock" /> 個</td>
-						</tr>
-					</table>
+			<div class="detailsList">
+				<div class="img">
+					<img class="image"
+						src="<s:property value='session.d_image_file_path'/>" alt="Photo"
+						width="300" height="240">
 				</div>
+				<table class="detailsTable">
+					<tr>
+						<td class="nowrap">商品名かな</td>
+						<td>:</td>
+						<td><s:property value="session.d_product_name_kana" /></td>
+					</tr>
+					<tr>
+						<td class="nowrap">商品名</td>
+						<td>:</td>
+						<td><s:property value="session.d_product_name" /></td>
+					</tr>
+					<tr>
+						<td class="nowrap">商品詳細</td>
+						<td>:</td>
+						<td><s:property value="session.d_product_description" /></td>
+					</tr>
+					<tr>
+						<td class="nowrap">価格</td>
+						<td>:</td>
+						<td>￥<s:property value="session.d_product_price" /> 円
+						</td>
+					</tr>
+					<tr>
+						<td class="nowrap">発売日</td>
+						<td>:</td>
+						<td><s:property value="session.d_release_date" /></td>
+					</tr>
+					<tr>
+						<td class="nowrap">販売会社</td>
+						<td>:</td>
+						<td><s:property value="session.d_release_company" /></td>
+					</tr>
+					<tr>
+						<td class="nowrap">在庫</td>
+						<td>:</td>
+						<td><s:property value="session.d_item_stock" /> 個</td>
+					</tr>
+				</table>
+			</div>
 
 
 
@@ -91,7 +91,8 @@
 
 					<div class=pd-cart>
 
-						<s:submit value=" カートに入れる" onclick="goCartAction();">
+						<s:token />
+						<s:submit value=" カートに入れる" onclick="goCartInsertAction();">
 							<s:hidden name="product_id" value="%{session.d_product_id}" />
 							<s:hidden name="price" value="%{session.d_product_price}" />
 							<s:hidden name="item_stock" value="%{session.d_item_stock}" />

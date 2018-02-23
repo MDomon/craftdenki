@@ -80,9 +80,9 @@ public class InputChecker {
 			result = "販売価格を入力してください。";
 		} else if (!newBuyPrice.matches("^[0-9, ]+$")) {
 			result = "販売価格は半角数字で入力してください。";
-		} /*else if(!newBuyPrice.matches("\\d{1,8}")){
+		} else if(newBuyPrice.length() > 8){
 			result = "取り扱い出来ない金額です。";
-		}*/
+		}
 
 		return result;
 	}
@@ -115,12 +115,22 @@ public class InputChecker {
 	public String newProductImageChk(String newProductImage) {
 		String result = "OK";
 
-		if (!newProductImage.equals("") && !newProductImage.matches("\\w+.(jpeg|jpg|tiff|png|gif|bmp)$")) {
-			result = "画像ファイル名(半角英数,_).拡張子(jpeg,jpg,tiff,png,gif,bmp)の形式で入力してください。";
-
-			/*
-			 * 画像ファイルが既にアップロード済みか判定できれば、、、
-			 */
+		if (newProductImage == null || newProductImage.equals("")) {
+			result = "画像ファイル名を入力してください。";
+			return result;
+		}
+		String[] list = newProductImage.split("\\.");
+		if(list.length > 2){
+			result = "画像ファイル名半角英数または_または-で作成してください。";
+			return result;
+		} else if(list.length == 1){
+			result="拡張子を入力してください。";
+			return result;
+		}
+		else if(!list[0].matches("^[0-9a-zA-Z_-]+$")){
+			result = "画像ファイル名半角英数または_または-で作成してください。";
+		} else if (!list[1].matches("(jpeg|jpg|tiff|png|gif|bmp)")) {
+			result = ".拡張子(jpeg,jpg,tiff,png,gif,bmp)の形式を入力してください。";
 		}
 
 		return result;
@@ -142,6 +152,12 @@ public class InputChecker {
 			result = "仕入数に入力されていない欄があります。全ての欄に0以上の数字を入力してください。";
 		} else if (!supplyCount.matches("^[0-9, ]+$")) {
 			result = "仕入数は半角数字で入力してください。";
+		} else {
+			String[] supplyCountList = supplyCount.split(", ",0);
+			for(String i :supplyCountList){
+				if(i.length() > 5)
+					result = "取り扱い出来ない数量です。";
+			}
 		}
 		return result;
 	}
@@ -156,6 +172,12 @@ public class InputChecker {
 			result = "仕入単価に入力されていない欄があります。全ての欄に0以上の数字を入力してください。";
 		} else if (!supplyCost.matches("^[0-9, ]+$")) {
 			result = "仕入単価は半角数字で入力してください。";
+		} else {
+			String[] supplyCostList = supplyCost.split(", ",0);
+			for(String i :supplyCostList){
+				if(i.length() > 8)
+					result = "取り扱い出来ない金額です。";
+			}
 		}
 		return result;
 	}

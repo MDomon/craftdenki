@@ -30,7 +30,7 @@ public class ProductDTO {
 	private String product_count;
 	private int supplyCount; //仕入数
 	private int supplyCost; //仕入原価
-	private int supplyCostTotal; //仕入計
+	private long supplyCostTotal; //仕入計
 
 
 	//カテゴリ名
@@ -191,14 +191,13 @@ public class ProductDTO {
 		this.supplyCost = supplyCost;
 	}
 
-	public int getSupplyCostTotal() {
+
+	public long getSupplyCostTotal() {
 		return supplyCostTotal;
 	}
-
-	public void setSupplyCostTotal(int supplyCostTotal) {
+	public void setSupplyCostTotal(long supplyCostTotal) {
 		this.supplyCostTotal = supplyCostTotal;
 	}
-
 	public String getProduct_count() {
 		return product_count;
 	}

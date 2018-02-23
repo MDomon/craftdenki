@@ -22,6 +22,7 @@
 
 	<div class="main">
 		<div class="ProductList">
+
 			<h3>商品一覧</h3>
 
 			<!-- 検索時のメッセージ(sano -->

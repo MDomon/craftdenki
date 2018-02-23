@@ -55,7 +55,7 @@ input[type="text"], input[type="password"] {
 
 .kageyama5{
 	padding-top:10px;
-	padding-left:30px;
+
 }
 </style>
 
@@ -119,6 +119,7 @@ input[type="text"], input[type="password"] {
 					</tr>
 
 					<tr>
+						<td></td>
 						<td><div class="kageyama5">
 								<s:submit class="button" value="変更" />
 							</div></td>

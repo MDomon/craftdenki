@@ -5,21 +5,28 @@
 
 <!DOCTYPE html>
 <html lang="ja">
-
+<meta http-equiv="imagetoolbar" content="text/javascript"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
 <link href="css/craftdenki.css" rel="stylesheet">
 
-
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
-	function CartAction() {
+	function CartAction(f) {
+		var count =f.querySelectorAll('[type="checkbox"]:checked').length;
+		if(count==0){
+			<!-- window.alert("チェックしてください！"); -->
+		}else{
+			<!-- window.alert("チェックされてます！:"+count);  -->
+
+		}
 		document.getElementById('form').action = "CartAction";
 	}
 	function SettlementAction() {
 		document.getElementById('form').action = "SettlementAction";
 	}
-</script>
 
 
+	</script>
 
 <title>cart画面</title>
 
@@ -73,11 +80,14 @@
 				<br>
 				<div class="ph">
 					<table>
-						<s:iterator value="cartList">
+						<s:iterator value="cartList" status="st">
 							<div class="ph-box">
 
 								<div class="ph-check">
-									<s:checkbox name="deleteList" value="checked" fieldValue="%{id}" />
+
+
+									<input type="checkbox" name="deleteList" value='<s:property value="%{id}" />' id= "checkBtn" />
+
 								</div>
 
 								<p>&nbsp;</p>
@@ -114,33 +124,7 @@
 
 							</div>
 
-							<!--
-					<ul class="box23">
-						<li class="itemlist23"><div class="iFP"><img src="<s:property value='imageFilePath'/>" width="auto" height="200px"></div></li>
-						<s:hidden name="imageFilePath" value="%{imageFilePath}" />
 
-						<li class="itemlist23">商品名:<span><s:property value="productName" /></span></li>
-						<s:hidden name="productName" value="%{productName}" />
-
-						<li class="itemlist23">ふりがな:<span><s:property value="productNameKana" /></span></li>
-						<s:hidden name="productNameKana" value="%{productNamekana}" />
-
-						<li class="itemlist23">金額:<span><s:property value="price" />円</span></li>
-						<s:hidden name="price" value="%{price}" />
-
-						<li class="itemlist23">個数:<span><s:property value="productCount" />個</span></li>
-						<s:hidden name="productCount" value="%{productCount}" />
-
-						<li class="itemlist23">発売会社名:<s:property value="releaseCompany" /></li>
-						<s:hidden name="releaseCompany" value="%{releaseCompany}" />
-
-						<li class="itemlist23">発売年月日:<s:property value="releaseDate" /></li>
-						<s:hidden name="releaseDate" value="%{releaseDate}" />
-
-						<li class="itemlist23">合計金額:<s:property value="totalPrice" /></li>
-						<s:hidden name="totalPrice" value="%{totalPrice}" />
-					</ul>
--->
 						</s:iterator>
 					</table>
 
@@ -156,10 +140,11 @@
 						<s:hidden name="product_count" value="%{product_count}" />
 
 
+
 				<div class="cart-button">
 					<s:submit value="決済に進む" onclick="SettlementAction();"
 						class="button" />
-					<s:submit value="削除" onclick="CartAction();" class="button"/>
+					<s:submit value="削除" onclick="CartAction(this.form);" id="submitBtn" disabled="disabled"/>
 
 				</div>
 			</s:form>

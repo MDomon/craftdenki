@@ -35,10 +35,10 @@ public class SalesManageAction  extends ActionSupport implements SessionAware{
 	private String allTotalSales; //全売上合計
 	private String allTotalCost; //全原価合計
 	private String allTotalProfit; //全利益合計
-	private List<Integer> categorySalesList = new ArrayList<>(); //カテゴリ毎売上リスト
-	private List<Integer> categoryProfitList = new ArrayList<>(); //カテゴリ毎利益リスト
-	private List<Integer> productSalesList = new ArrayList<>(); //商品毎売上リスト
-	private List<Integer> productProfitList = new ArrayList<>(); //商品毎利益リスト
+	private List<Long> categorySalesList = new ArrayList<>(); //カテゴリ毎売上リスト
+	private List<Long> categoryProfitList = new ArrayList<>(); //カテゴリ毎利益リスト
+	private List<Long> productSalesList = new ArrayList<>(); //商品毎売上リスト
+	private List<Long> productProfitList = new ArrayList<>(); //商品毎利益リスト
 	private List<String> productNametList = new ArrayList<>(); //対象カテゴリの商品名リスト
 	/*
 	 * 検索条件
@@ -98,8 +98,8 @@ public class SalesManageAction  extends ActionSupport implements SessionAware{
 
 					//カテゴリごとの売上・利益リスト用意
 						for(int i = 1; i <= categoryList.size(); i++) {
-							categorySalesList.add(0);
-							categoryProfitList.add(0);
+							categorySalesList.add(0L);
+							categoryProfitList.add(0L);
 						}
 					//カテゴリごとの売上・利益集計
 						for(SalesHistoryDTO dto: salesHistoryList) {
@@ -162,8 +162,8 @@ public class SalesManageAction  extends ActionSupport implements SessionAware{
 					if(categoryId.equals("0")) {
 						//カテゴリごとの売上・利益リスト用意
 						for(int i = 1; i <= categoryList.size(); i++) {
-							categorySalesList.add(0);
-							categoryProfitList.add(0);
+							categorySalesList.add(0L);
+							categoryProfitList.add(0L);
 						}
 						//カテゴリごとの売上・利益集計
 						for(SalesHistoryDTO dto: salesHistoryList) {
@@ -188,8 +188,8 @@ public class SalesManageAction  extends ActionSupport implements SessionAware{
 
 						//商品ごとの売上・利益リスト用意
 						for(int i = 1; i <= productNametList.size(); i++) {
-							productSalesList.add(0);
-							productProfitList.add(0);
+							productSalesList.add(0L);
+							productProfitList.add(0L);
 						}
 						//商品ごとの売上・利益集計
 						for(SalesHistoryDTO dto: salesHistoryList) {
@@ -208,143 +208,189 @@ public class SalesManageAction  extends ActionSupport implements SessionAware{
 		}else errorMessage = "不正なアクセスです。もう一度ログインをお願いいたします。";
 		return result;
 	}
-	@Override
-	public void setSession(Map<String,Object> session){
-		this.session = session;
-	}
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
-	public List<SalesHistoryDTO> getSalesHistoryList() {
-		return salesHistoryList;
-	}
-	public void setSalesHistoryList(List<SalesHistoryDTO> salesHistoryList) {
-		this.salesHistoryList = salesHistoryList;
-	}
+
 	public Map<String, Object> getSession() {
 		return session;
 	}
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
 	public List<Integer> getYearList() {
 		return yearList;
 	}
+
 	public void setYearList(List<Integer> yearList) {
 		this.yearList = yearList;
 	}
+
 	public List<String> getMonthDayList() {
 		return monthDayList;
 	}
+
 	public void setMonthDayList(List<String> monthDayList) {
 		this.monthDayList = monthDayList;
 	}
-	public boolean isSearchFlg() {
-		return searchFlg;
+
+	public List<SalesHistoryDTO> getSalesHistoryList() {
+		return salesHistoryList;
 	}
-	public void setSearchFlg(boolean searchFlg) {
-		this.searchFlg = searchFlg;
+
+	public void setSalesHistoryList(List<SalesHistoryDTO> salesHistoryList) {
+		this.salesHistoryList = salesHistoryList;
 	}
-	public String getSaleStartY() {
-		return saleStartY;
-	}
-	public void setSaleStartY(String saleStartY) {
-		this.saleStartY = saleStartY;
-	}
-	public String getSaleStartMD() {
-		return saleStartMD;
-	}
-	public void setSaleStartMD(String saleStartMD) {
-		this.saleStartMD = saleStartMD;
-	}
-	public String getSaleEndY() {
-		return saleEndY;
-	}
-	public void setSaleEndY(String saleEndY) {
-		this.saleEndY = saleEndY;
-	}
-	public String getSaleEndMD() {
-		return saleEndMD;
-	}
-	public void setSaleEndMD(String saleEndMD) {
-		this.saleEndMD = saleEndMD;
-	}
+
 	public List<CategoryDTO> getCategoryList() {
 		return categoryList;
 	}
+
 	public void setCategoryList(List<CategoryDTO> categoryList) {
 		this.categoryList = categoryList;
 	}
-	public List<Integer> getCategoryProfitList() {
-		return categoryProfitList;
-	}
-	public void setCategoryProfitList(List<Integer> categoryProfitList) {
-		this.categoryProfitList = categoryProfitList;
-	}
+
 	public String getCategoryId() {
 		return categoryId;
 	}
+
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
+
 	public String getAllAvgPrice() {
 		return allAvgPrice;
 	}
+
 	public void setAllAvgPrice(String allAvgPrice) {
 		this.allAvgPrice = allAvgPrice;
 	}
+
 	public String getAllAvgCost() {
 		return allAvgCost;
 	}
-	public List<Integer> getProductSalesList() {
-		return productSalesList;
-	}
-	public void setProductSalesList(List<Integer> productSalesList) {
-		this.productSalesList = productSalesList;
-	}
-	public List<Integer> getProductProfitList() {
-		return productProfitList;
-	}
-	public void setProductProfitList(List<Integer> productProfitList) {
-		this.productProfitList = productProfitList;
-	}
-	public List<String> getProductNametList() {
-		return productNametList;
-	}
-	public void setProductNametList(List<String> productNametList) {
-		this.productNametList = productNametList;
-	}
+
 	public void setAllAvgCost(String allAvgCost) {
 		this.allAvgCost = allAvgCost;
 	}
+
 	public String getAllTotalCount() {
 		return allTotalCount;
 	}
+
 	public void setAllTotalCount(String allTotalCount) {
 		this.allTotalCount = allTotalCount;
 	}
+
 	public String getAllTotalSales() {
 		return allTotalSales;
 	}
+
 	public void setAllTotalSales(String allTotalSales) {
 		this.allTotalSales = allTotalSales;
 	}
+
 	public String getAllTotalCost() {
 		return allTotalCost;
 	}
+
 	public void setAllTotalCost(String allTotalCost) {
 		this.allTotalCost = allTotalCost;
 	}
+
 	public String getAllTotalProfit() {
 		return allTotalProfit;
 	}
+
 	public void setAllTotalProfit(String allTotalProfit) {
 		this.allTotalProfit = allTotalProfit;
 	}
-	public List<Integer> getCategorySalesList() {
+
+	public List<Long> getCategorySalesList() {
 		return categorySalesList;
 	}
-	public void setCategorySalesList(List<Integer> categorySalesList) {
+
+	public void setCategorySalesList(List<Long> categorySalesList) {
 		this.categorySalesList = categorySalesList;
 	}
+
+	public List<Long> getCategoryProfitList() {
+		return categoryProfitList;
+	}
+
+	public void setCategoryProfitList(List<Long> categoryProfitList) {
+		this.categoryProfitList = categoryProfitList;
+	}
+
+	public List<Long> getProductSalesList() {
+		return productSalesList;
+	}
+
+	public void setProductSalesList(List<Long> productSalesList) {
+		this.productSalesList = productSalesList;
+	}
+
+	public List<Long> getProductProfitList() {
+		return productProfitList;
+	}
+
+	public void setProductProfitList(List<Long> productProfitList) {
+		this.productProfitList = productProfitList;
+	}
+
+	public List<String> getProductNametList() {
+		return productNametList;
+	}
+
+	public void setProductNametList(List<String> productNametList) {
+		this.productNametList = productNametList;
+	}
+
+	public boolean isSearchFlg() {
+		return searchFlg;
+	}
+
+	public void setSearchFlg(boolean searchFlg) {
+		this.searchFlg = searchFlg;
+	}
+
+	public String getSaleStartY() {
+		return saleStartY;
+	}
+
+	public void setSaleStartY(String saleStartY) {
+		this.saleStartY = saleStartY;
+	}
+
+	public String getSaleStartMD() {
+		return saleStartMD;
+	}
+
+	public void setSaleStartMD(String saleStartMD) {
+		this.saleStartMD = saleStartMD;
+	}
+
+	public String getSaleEndY() {
+		return saleEndY;
+	}
+
+	public void setSaleEndY(String saleEndY) {
+		this.saleEndY = saleEndY;
+	}
+
+	public String getSaleEndMD() {
+		return saleEndMD;
+	}
+
+	public void setSaleEndMD(String saleEndMD) {
+		this.saleEndMD = saleEndMD;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
 }

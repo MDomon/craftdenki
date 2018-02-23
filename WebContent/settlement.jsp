@@ -36,6 +36,7 @@
 .blank{
 	margin-bottom:10px;
 	font-weight:bold;
+	font-size:14px;
 }
 .left2{
 	margin-top:10px;
@@ -88,8 +89,9 @@
 				</s:if>
 				</div>
 
-				<div class="address">
+
 				<s:if test="userAddress2 != null">
+				<div class="address">
 					<div class="radio">
 						<input type="radio" name="destination" value="2"> <span><s:property
 								value="userAddress2" /></span>
@@ -97,11 +99,13 @@
 					<div class="phone">
 						<span> <s:property value="telNumber2" /></span>
 					</div>
+					</div>
 				</s:if>
-				</div>
 
-				<div class="address">
+
+
 				<s:if test="userAddress3 != null">
+				<div class="address">
 					<div class="radio">
 						<input type="radio" name="destination" value="3"> <span><s:property
 								value="userAddress3" /></span>
@@ -109,9 +113,11 @@
 					<div class="phone">
 						<span> <s:property value="telNumber3" /></span>
 					</div>
-				</s:if>
 				</div>
-			</div>
+				</s:if>
+
+				</div>
+
 
 
 

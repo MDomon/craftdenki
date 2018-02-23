@@ -183,6 +183,7 @@
 				<br>
 
 				<span>画像ファイル名</span>
+				<span class="hissu">必須</span>
 				<div>
 					<s:textfield  name="newProductImage" value="%{newProductImage}" placeholder="ファイル名.拡張子例)bazooka"/>
 					<label for="dynamic-label-input">ファイル名.拡張子例)bazooka</label>

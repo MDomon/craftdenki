@@ -13,7 +13,7 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <link href="css/craftdenki.css" rel="stylesheet">
-
+<link rel="shortcut icon" href="/icons/favicon.ico">
 <title>ログインID確認画面</title>
 
 

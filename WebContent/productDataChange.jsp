@@ -33,21 +33,21 @@
 			<s:form action="CheckProductChangeAction" >
 				<s:hidden name="id" value="%{id}"/>
 				<span>商品ID</span>
-				<span>必須</span>
+				<span class="hissu">必須</span>
 				<div>
 					<s:textfield  name="productId" value="%{productId}" placeholder="半角数字8桁 例)12345678"/>
 					<label for="dynamic-label-input">半角数字8桁 例)12345678</label>
 				</div>
 
 				<span>商品名</span>
-				<span>必須</span>
+				<span class="hissu">必須</span>
 				<div>
 					<s:textfield name="productName" value="%{productName}" placeholder="50字以内 例)除脂肪メソッド8"/>
 					<label for="dynamic-label-input">50字以内 例)除脂肪メソッド</label>
 				</div>
 
 				<span>商品名かな</span>
-				<span>必須</span>
+				<span class="hissu">必須</span>
 				<div>
 					<s:textfield name="productNameKana" value="%{productNameKana}" placeholder="ひらがな 例)じょしぼうめそっど"/>
 					<label for="dynamic-label-input">ひらがな 例)じょしぼうめそっど</label>
@@ -60,20 +60,21 @@
 				</div>
 
 				<span>カテゴリID</span>
-				<span>必須</span>
+				<span class="hissu">必須</span>
 				<div>
 					<s:select name="categoryId" list="categoryList" listValue="categoryName" listKey="categoryId">
 					</s:select>
 				</div>
 
 				<span>販売価格</span>
-				<span>必須</span>
+				<span class="hissu">必須</span>
 				<div>
 					<s:textfield name="price" value="%{price}" placeholder="半角数字 例)1300"/>
 					<label for="dynamic-label-input">半角数字 例)1300</label>
 				</div>
 
 				<span>画像ファイル名</span>
+				<span class="hissu">必須</span>
 				<div>
 					<s:textfield name="imageFileName" value="%{imageFileName}" placeholder="ファイル名.拡張子 例)bazooka"/>
 					<label for="dynamic-label-input">ファイル名.拡張子 例)bazooka</label>

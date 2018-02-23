@@ -51,6 +51,8 @@
 					</table>
 					<p class="m-log">仕入値合計<s:property value="supplyCostAllTotal"/>円
 					<p class="m-log">以上でよろしいですか？</p>
+					<!-- tokenタグ -->
+  					  <s:token/>
 					<s:submit value="はい"/>
 				</s:form>
 				<s:form action="ProductManageAction">
