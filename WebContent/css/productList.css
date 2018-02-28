@@ -40,9 +40,9 @@
 				margin-right:10px;
 			}
 		input[type="submit"]:hover,  input[type="button"]:hover{
-		        -ms-transform: translateY(2px);
-			    -webkit-transform: translateY(2px);
-			    transform: translateY(2px);
+		        -ms-transform: translate3d;
+			    -webkit-transform: translate3d;
+			    transform: translate3d;
 			    border-bottom: none;
 			    box-shadow: none;
 			}
@@ -202,7 +202,7 @@ background-image: url("../images/mokume1.jpg");
 
 
 .ProductList {
-    width: 1283px;
+    width: 1260px;
 
 
 }

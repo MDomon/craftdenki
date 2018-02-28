@@ -540,4 +540,83 @@ public class CartDTOTest {
 	}
 
 
+
+
+
+
+
+
+
+
+
+
+
+	@Test
+	public void testGetFinalPrice1() {
+		CartDTO dto = new CartDTO();
+		int expected = 0;
+
+		dto.setFinalPrice(expected);
+
+		assertEquals(expected, dto.getFinalPrice());
+	}
+
+	@Test
+	public void testGetFinalPrice2() {
+		CartDTO dto = new CartDTO();
+		int expected = 1;
+
+		dto.setFinalPrice(expected);
+
+		assertEquals(expected, dto.getFinalPrice());
+	}
+
+	@Test
+	public void testGetFinalPrice3() {
+		CartDTO dto = new CartDTO();
+		int expected = 12345678;
+
+		dto.setFinalPrice(expected);
+
+		assertEquals(expected, dto.getFinalPrice());
+	}
+
+
+
+
+
+
+
+
+
+	@Test
+	public void testGetItem_stock1() {
+		CartDTO dto = new CartDTO();
+		int expected = 0;
+
+		dto.setItem_stock(expected);
+
+		assertEquals(expected, dto.getItem_stock());
+	}
+
+	@Test
+	public void testGetItem_stock2() {
+		CartDTO dto = new CartDTO();
+		int expected = 1;
+
+		dto.setItem_stock(expected);
+
+		assertEquals(expected, dto.getItem_stock());
+	}
+
+	@Test
+	public void testGetItem_stock3() {
+		CartDTO dto = new CartDTO();
+		int expected = 12345678;
+
+		dto.setItem_stock(expected);
+
+		assertEquals(expected, dto.getItem_stock());
+	}
+
 }

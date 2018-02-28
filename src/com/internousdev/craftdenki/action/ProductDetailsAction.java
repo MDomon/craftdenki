@@ -65,7 +65,7 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 				session.put("d_product_id", detail.getProduct_id());
 				session.put("d_product_count", detail.getProduct_count());
 				session.put("d_category_id", detail.getCategory_id());
-			}else{
+			} else {
 
 				return ERROR;
 			}
@@ -98,8 +98,6 @@ public class ProductDetailsAction extends ActionSupport implements SessionAware 
 
 		}
 
-		System.out.println(detail);
-		System.out.println(session.get("d_category_id"));
 		if (session.get("d_category_id").equals("")) {
 			return ERROR;
 		}

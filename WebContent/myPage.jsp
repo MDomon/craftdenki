@@ -10,76 +10,69 @@
 	<title>MyPage</title>
 
 	<link href="css/craftdenki.css" rel="stylesheet">
-	<%-- 	<link href="css/userInfoChange.css" rel="stylesheet"> --%>
 
 </head>
 <body>
 
 	<jsp:include page="home2.jsp" />
 
-	  <div class="main">
-			                  <div class="wideBox">
+	<div class="main">
+		<div class="wideBox">
 
-		<h3>マイページ</h3>
+			<h3>マイページ</h3>
 
-		<table class="myPageTable">
-
-		<tr class="myPageTr">
-			<th class="myPageTh">氏名(ふりがな)</th>
-			<td class="myPageTd">
-				<s:property value="session.familyName"/>
-				<span style="margin-left:0.3em;" ></span>
-				<s:property value="session.firstName"/>
-
-
-
+			<table class="myPageTable">
+				<tr class="myPageTr">
+					<th class="myPageTh">氏名(ふりがな)</th>
+					<td class="myPageTd">
+					<s:property value="session.familyName"/>
+					<span style="margin-left:0.3em;" ></span>
+					<s:property value="session.firstName"/>
 					(<s:property value="session.familyNameKana"/>
-						<span style="margin-left:0.3em;" ></span>
-							<s:property value="session.firstNameKana"/>)
-			</td>
+					<span style="margin-left:0.3em;" ></span>
+					<s:property value="session.firstNameKana"/>)
+					</td>
 
-		<tr class="myPageTr">
-			<th class="myPageTh">性別</th>
-			<td class="myPageTd">
-				<s:if test="session.sex==0">男性</s:if>
-				<s:if test="session.sex==1">女性</s:if>
-			</td>
-		</tr>
-
-
-		<tr class="myPageTr">
-			<th class="myPageTh">メールアドレス</th>
-			<td class="myPageTd">
-			<s:property value="session.mail"/></td>
-		</tr>
+				<tr class="myPageTr">
+					<th class="myPageTh">性別</th>
+					<td class="myPageTd">
+					<s:if test="session.sex==0">男性</s:if>
+					<s:if test="session.sex==1">女性</s:if>
+					</td>
+				</tr>
 
 
-		</table>
-		<%-- <div class="clear"></div>--%>
+				<tr class="myPageTr">
+					<th class="myPageTh">メールアドレス</th>
+					<td class="myPageTd">
+					<s:property value="session.mail"/></td>
+				</tr>
 
 
-	<div class="myPageButtonBox">
-		<s:form action="PurchaseHistoryAction">
-				<s:submit value="購入履歴" class="myPageButton history"/>
-		</s:form>
+			</table>
 
 
-		<s:form action="FavoriteAction">
-				<s:submit value="お気に入りリスト" class="myPageButton favorite"/>
-		</s:form>
+			<div class="myPageButtonBox">
+				<s:form action="PurchaseHistoryAction">
+					<s:submit value="購入履歴" class="myPageButton history"/>
+				</s:form>
 
 
-		<s:form action="UserInfoChangeAction">
-				<s:submit value="ユーザー情報変更" class="myPageButton info"/>
-		</s:form>
+				<s:form action="FavoriteAction">
+					<s:submit value="お気に入りリスト" class="myPageButton favorite"/>
+				</s:form>
 
-		<div class="clear"></div>
+
+				<s:form action="UserInfoChangeAction">
+					<s:submit value="ユーザー情報変更" class="myPageButton info"/>
+				</s:form>
+
+				<div class="clear"></div>
+			</div>
+		</div>
 	</div>
 
-			               </div>
-	 </div>
-
-	    <jsp:include page="footer.jsp"/>
+	<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

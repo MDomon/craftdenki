@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="refresh" content="3;URL=<s:url action='ProductListAction' />">
 <title>完了画面</title>
-<link href="css/nakajima.css" rel="stylesheet">
+<!--<link href="css/nakajima.css" rel="stylesheet">-->
 <link href="css/craftdenki.css" rel="stylesheet">
 </head>
 <body>

@@ -8,8 +8,6 @@ import com.internousdev.craftdenki.dto.SettlementDTO;
 
 public class SettlementDTOTest {
 
-
-
 	@Test
 	public void testGetFamilyName1() {
 		SettlementDTO dto = new SettlementDTO();
@@ -80,9 +78,75 @@ public class SettlementDTOTest {
 		assertEquals(expected, dto.getFamilyName());
 	}
 
+	@Test
+	public void testGetFirstName1() {
+		SettlementDTO dto = new SettlementDTO();
+		String expected = "0";
 
+		dto.setFirstName(expected);
 
+		assertEquals(expected, dto.getFirstName());
+	}
 
+	@Test
+	public void testGetFirstName2() {
+		SettlementDTO dto = new SettlementDTO();
+		String expected = "null";
+
+		dto.setFirstName(expected);
+
+		assertEquals(expected, dto.getFirstName());
+	}
+
+	@Test
+	public void testGetFirstName3() {
+		SettlementDTO dto = new SettlementDTO();
+		String expected = "";
+
+		dto.setFirstName(expected);
+
+		assertEquals(expected, dto.getFirstName());
+	}
+
+	@Test
+	public void testGetFirstName4() {
+		SettlementDTO dto = new SettlementDTO();
+		String expected = " 　";
+
+		dto.setFirstName(expected);
+
+		assertEquals(expected, dto.getFirstName());
+	}
+
+	@Test
+	public void testGetFirstName5() {
+		SettlementDTO dto = new SettlementDTO();
+		String expected = "aaa";
+
+		dto.setFirstName(expected);
+
+		assertEquals(expected, dto.getFirstName());
+	}
+
+	@Test
+	public void testGetFirstName6() {
+		SettlementDTO dto = new SettlementDTO();
+		String expected = "AAA";
+
+		dto.setFirstName(expected);
+
+		assertEquals(expected, dto.getFirstName());
+	}
+
+	@Test
+	public void testGetFirstName7() {
+		SettlementDTO dto = new SettlementDTO();
+		String expected = "あああ";
+
+		dto.setFirstName(expected);
+
+		assertEquals(expected, dto.getFirstName());
+	}
 
 	@Test
 	public void testGetUserAddress1() {
@@ -154,9 +218,6 @@ public class SettlementDTOTest {
 		assertEquals(expected, dto.getUserAddress());
 	}
 
-
-
-
 	@Test
 	public void testGetUserAddress21() {
 		SettlementDTO dto = new SettlementDTO();
@@ -226,8 +287,6 @@ public class SettlementDTOTest {
 
 		assertEquals(expected, dto.getUserAddress2());
 	}
-
-
 
 	@Test
 	public void testGetUserAddress31() {
@@ -299,8 +358,6 @@ public class SettlementDTOTest {
 		assertEquals(expected, dto.getUserAddress3());
 	}
 
-
-
 	@Test
 	public void testGetTelNumber1() {
 		SettlementDTO dto = new SettlementDTO();
@@ -370,8 +427,6 @@ public class SettlementDTOTest {
 
 		assertEquals(expected, dto.getTelNumber());
 	}
-
-
 
 	@Test
 	public void testGetTelNumber21() {
@@ -443,8 +498,6 @@ public class SettlementDTOTest {
 		assertEquals(expected, dto.getTelNumber2());
 	}
 
-
-
 	@Test
 	public void testGetTelNumber31() {
 		SettlementDTO dto = new SettlementDTO();
@@ -514,9 +567,6 @@ public class SettlementDTOTest {
 
 		assertEquals(expected, dto.getTelNumber3());
 	}
-
-
-
 
 	@Test
 	public void testGetEmail1() {
@@ -588,9 +638,6 @@ public class SettlementDTOTest {
 		assertEquals(expected, dto.getEmail());
 	}
 
-
-
-
 	public void testGetAtCost1() {
 		SettlementDTO dto = new SettlementDTO();
 		int expected = 0;
@@ -619,8 +666,6 @@ public class SettlementDTOTest {
 
 		assertEquals(expected, dto.getAtCost());
 	}
-
-
 
 	@Test
 	public void testGetImageFilePath1() {

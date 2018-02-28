@@ -13,60 +13,51 @@ import com.internousdev.craftdenki.dto.CategoryDTO;
 import com.internousdev.craftdenki.util.InputChecker;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class CheckProductChangeAction extends ActionSupport implements SessionAware{
-	public Map<String,Object> session;
+public class CheckProductChangeAction extends ActionSupport implements SessionAware {
+	public Map<String, Object> session;
 
 	private ArrayList<String> errorMessageList = new ArrayList<>();
 	private String errorMessage;
 	private List<CategoryDTO> categoryList = new ArrayList<CategoryDTO>();
+	private String id; // PK
+	private String productId; // 新商品ID
+	private String productName; // 商品名
+	private String productNameKana; // 商品名かな
+	private String productDescription; // 商品詳細
+	private String categoryId; // カテゴリID
+	private String price; // 販売価格
+	private String imageFileName; // 画像ファイル名
+	private String releaseDate; // 発売年月
+	private String releaseCompany; // 発売会社
+	private String categoryName; // カテゴリ名
 
-	private String id; //PK
-	private String productId; //新商品ID
-	private String productName; //商品名
-	private String productNameKana; //商品名かな
-	private String productDescription; //商品詳細
-	private String categoryId; //カテゴリID
-	private String price; //販売価格
-	private String imageFileName; //画像ファイル名
-	private String releaseDate; //発売年月
-	private String releaseCompany; //発売会社
-	private String categoryName; //カテゴリ名
+	public String execute() throws SQLException {
+		String result = ERROR;
 
-
-
-
-	public String execute() throws SQLException{
-		String result=ERROR;
-
-
-		if(session.get("master_flg") == "1"){      //管理者判定
+		if (session.get("master_flg") == "1") { // 管理者判定
 			result = SUCCESS;
 
-		//カテゴリを取得
+			// カテゴリを取得
 			getCategory();
-		//入力チェック
+			// 入力チェック
 			result = productCheck();
 
-
-			} else errorMessage = "不正なアクセスです。もう一度ログインをお願いいたします。";
+		} else
+			errorMessage = "不正なアクセスです。もう一度ログインをお願いいたします。";
 
 		return result;
 	}
 
-
-
-
-
 	/**
 	 * カテゴリリストとカテゴリ名を取得するメソッド
 	 */
-	private void getCategory(){
-		//カテゴリテーブルよりカテゴリリストを取得
+	private void getCategory() {
+		// カテゴリテーブルよりカテゴリリストを取得
 		CategoryDAO categoryDAO = new CategoryDAO();
 		categoryList = categoryDAO.getCategoryInfo();
-		//カテゴリ名を取得
-		for(int i = 0; i < categoryList.size(); i++) {
-			if(categoryList.get(i).getCategoryId().equals(categoryId)) {
+		// カテゴリ名を取得
+		for (int i = 0; i < categoryList.size(); i++) {
+			if (categoryList.get(i).getCategoryId().equals(categoryId)) {
 				this.categoryName = categoryList.get(i).getCategoryName();
 			}
 		}
@@ -74,19 +65,20 @@ public class CheckProductChangeAction extends ActionSupport implements SessionAw
 
 	/**
 	 * 入力情報をチェックして結果を返すメソッド
+	 *
 	 * @return result
 	 * @throws SQLException
 	 */
-	private String productCheck() throws SQLException{
+	private String productCheck() throws SQLException {
 		String result = SUCCESS;
 		ProductListDAO dao = new ProductListDAO();
 
 		InputChecker i = new InputChecker();
 
-		if(!(session.get("productId").toString().equals(productId)) && dao.existsProductId(productId)){
+		if (!(session.get("productId").toString().equals(productId)) && dao.existsProductId(productId)) {
 			errorMessageList.add("入力された商品IDは既に存在します");
 			result = "checkErr";
-		}else if (!i.newProductIdChk(productId).equals("OK")) {
+		} else if (!i.newProductIdChk(productId).equals("OK")) {
 			errorMessageList.add(i.newProductIdChk(productId));
 			result = "checkErr";
 		}
@@ -132,6 +124,7 @@ public class CheckProductChangeAction extends ActionSupport implements SessionAw
 		}
 		return result;
 	}
+
 	/*-----------------------------------------
 	 * getter,setter
 	 * ----------------------------------------
@@ -255,6 +248,5 @@ public class CheckProductChangeAction extends ActionSupport implements SessionAw
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-
 
 }

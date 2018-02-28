@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.internousdev.craftdenki.dto.ProductDTO;
 import com.internousdev.craftdenki.dto.SettlementDTO;
 import com.internousdev.craftdenki.util.DBConnector;
 import com.internousdev.craftdenki.util.DateUtil;
@@ -13,11 +14,13 @@ public class SettlementCompleteDAO {
 
 	private DateUtil dateUtil = new DateUtil();
 	private SettlementDTO dto = new SettlementDTO();
+	private int res = 0;
+	private DBConnector dbConnector = new DBConnector();
+	private Connection connection = dbConnector.getConnection();
+	private ProductDTO pDTO = new ProductDTO();
 
 	// atCostを持ってくる
 	public SettlementDTO getCurrentCost(int productId) throws SQLException {
-		DBConnector dbConnector = new DBConnector();
-		Connection connection = dbConnector.getConnection();
 
 		String sql = "SELECT current_cost FROM product_info WHERE product_id = ?";
 
@@ -35,11 +38,31 @@ public class SettlementCompleteDAO {
 		return dto;
 	}
 
+	public ProductDTO productConfirm(int productId) {
 
+		String sql = "select status from product_info where product_id = ?";
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+
+			ps.setInt(1, productId);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				pDTO.setStatus(rs.getInt("status"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return pDTO;
+	}
 
 	// 商品購入履歴テーブルにインサート
-	public void insertPurchaseHistory(String userId, int productId, int productCount, int price, int atCost, String  imageFilePath)
-			throws SQLException {
+	public int insertPurchaseHistory(String userId, int productId, int productCount, int price, int atCost,
+			String imageFilePath) throws SQLException {
 		DBConnector dbConnector = new DBConnector();
 		Connection connection = dbConnector.getConnection();
 
@@ -54,8 +77,7 @@ public class SettlementCompleteDAO {
 			ps.setInt(5, atCost);
 			ps.setString(6, dateUtil.getDate());
 			ps.setString(7, imageFilePath);
-
-			ps.executeUpdate();
+			res = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,10 +85,12 @@ public class SettlementCompleteDAO {
 			connection.close();
 		}
 
+		return res;
+
 	}
 
 	// カートの情報を削除
-	public void deleteCartInfo(String userId) throws SQLException {
+	public int deleteCartInfo(String userId) throws SQLException {
 		DBConnector dbConnector = new DBConnector();
 		Connection connection = dbConnector.getConnection();
 		String sql = "DELETE FROM cart_info WHERE user_id = ?";
@@ -75,12 +99,34 @@ public class SettlementCompleteDAO {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, userId);
 
-			ps.executeUpdate();
+			res = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			connection.close();
 		}
+
+		return res;
 	}
+	
+	// カートの情報を削除
+		public int deleteCartInfo2(String userId) throws SQLException {
+			DBConnector dbConnector = new DBConnector();
+			Connection connection = dbConnector.getConnection();
+			String sql = "DELETE FROM cart_info WHERE user_id = ? AND status='0'";
+
+			try {
+				PreparedStatement ps = connection.prepareStatement(sql);
+				ps.setString(1, userId);
+
+				res = ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				connection.close();
+			}
+
+			return res;
+		}
 
 }

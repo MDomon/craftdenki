@@ -17,6 +17,7 @@ public class ProductDTO {
 	private int price;
 	private int item_stock;
 	private int current_cost;
+	private int status;
 	private String product_name;
 	private String product_name_kana;
 	private String product_description;
@@ -204,6 +205,12 @@ public class ProductDTO {
 
 	public void setProduct_count(String product_count) {
 		this.product_count = product_count;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 

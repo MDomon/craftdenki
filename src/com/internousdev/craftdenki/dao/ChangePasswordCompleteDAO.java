@@ -11,7 +11,6 @@ import com.internousdev.craftdenki.util.DBConnector;
 import com.internousdev.craftdenki.util.DateUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
-
 public class ChangePasswordCompleteDAO extends ActionSupport implements SessionAware {
 	private DBConnector db = new DBConnector();
 
@@ -21,28 +20,31 @@ public class ChangePasswordCompleteDAO extends ActionSupport implements SessionA
 	private String password;
 	private String userId;
 	private String answer;
-	public Map<String,Object> session;
-
+	public Map<String, Object> session;
+	private int b=0;
 
 	private String sql = "UPDATE user_info SET password=?, update_date = ? WHERE user_id=? and answer=? ";
 
-	public void updateInfo(String password, String answer,String userId) throws SQLException{
+	public int updateInfo(String password, String answer, String userId) throws SQLException {
 
-			try{
+		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
+
+
+
 			ps.setString(1, password);
 			ps.setString(2, dateUtil.getDate());
 			ps.setString(3, userId);
 			ps.setString(4, answer);
 
 			ps.executeUpdate();
+			b=ps.executeUpdate();
 
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			conn.close();
-		}
-
+		}return b;
 
 	}
 
@@ -72,8 +74,8 @@ public class ChangePasswordCompleteDAO extends ActionSupport implements SessionA
 
 	@Override
 
-	public void setSession(Map<String, Object> session){
-		this.session=session;
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 
 	}
 }

@@ -23,7 +23,7 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 	private String product_id;
 	private String reviewFlg;
 	private String message;
-//	private String imageFilePath;
+	// private String imageFilePath;
 
 	private String imageFilePath;
 	private String productName;
@@ -34,52 +34,57 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 	private String deleteFlg;
 
 	public String execute() throws SQLException {
-		String result=ERROR;
+		String result = ERROR;
 
-		System.out.println("PurchaseHistoryAction-----");
-		System.out.println(imageFilePath);
-		System.out.println(productName);
-		System.out.println(productNameKana);
-		System.out.println(price);
-		System.out.println(count);
-		System.out.println(releaseCompany);
-		System.out.println(deleteFlg);
-		System.out.println("---------------------------");
+
+
 
 		PurchaseHistoryDAO dao = new PurchaseHistoryDAO();
 
 		if (deleteFlg == null) {
-			message=null;
+			message = null;
 
 			String userId = session.get("trueID").toString();
 			purchaseHistoryList = dao.getPurchaseHistory(userId);
-//			if (purchaseHistoryList.equals("[]")) {
-//
-//			}
+			// if (purchaseHistoryList.equals("[]")) {
+			//
+			// }
 			return SUCCESS;
-		} else if (deleteFlg.equals("1")) {
-			message=null;
-			if (!(checkList == null)) {
-				for (String deleteId: checkList) {
-					dao.deleteHistoryInfo(deleteId);
-				}
+		} else if(session.containsKey("trueID")){
 
-				result = "delete";
-			}
+			if (deleteFlg.equals("1")) {
+				message = null;
+				if (!(checkList == null)) {
+					for (String deleteId : checkList) {
+						dao.deleteHistoryInfo(deleteId);
+					}
+
+					result = "delete";
+				}
 				PurchaseHistoryDAO dao1 = new PurchaseHistoryDAO();
 				String userId = session.get("trueID").toString();
 				purchaseHistoryList = dao1.getPurchaseHistory(userId);
-			result = "delete";
-			return result;
-		}
+				result = "delete";
+				return result;
+			}
 
-		if (reviewFlg == "1") {
-			result = "review";
-			return result;
+			if (reviewFlg == "1") {
+				result = "review";
+				return result;
+			}
+		}else{
+			result=ERROR;
 		}
 
 		return result;
 	}
+
+
+
+
+
+
+
 
 	public Map<String, Object> getSession() {
 		return session;

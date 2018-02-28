@@ -216,6 +216,4 @@ public class ProductDataChangeAction extends ActionSupport implements SessionAwa
 		this.categoryList = categoryList;
 	}
 
-
-
 }

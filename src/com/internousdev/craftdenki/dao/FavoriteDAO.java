@@ -18,21 +18,12 @@ public class FavoriteDAO {
 
 	public ArrayList<FavoriteDTO> getFavoriteInfo(String loginId) throws SQLException {
 		ArrayList<FavoriteDTO> favoriteDTO = new ArrayList<FavoriteDTO>();
-		String sql = "SELECT "
-						+ "pi.id as id, "
-						+ "pi.product_id as product_id,"
-						+ "pi.product_name as product_name,"
-						+ "pi.product_name_kana as product_name_kana,"
-						+ "pi.image_file_path as image_file_path,"
-						+ "pi.image_file_name as image_file_name,"
-						+ "pi.price as price,"
-						+ "pi.release_company as release_company,"
-						+ "pi.release_date as release_date "
-					+ "FROM "
-						+ "product_info as pi "
-					+ "JOIN favorite_info as fi "
-					+ "ON fi.product_id = pi.product_id "
-					+ "WHERE fi.user_id = ?";
+		String sql = "SELECT " + "pi.id as id, " + "pi.product_id as product_id," + "pi.product_name as product_name,"
+				+ "pi.product_name_kana as product_name_kana," + "pi.image_file_path as image_file_path,"
+				+ "pi.image_file_name as image_file_name," + "pi.price as price,"
+				+ "pi.release_company as release_company," + "pi.release_date as release_date " + "FROM "
+				+ "product_info as pi " + "JOIN favorite_info as fi " + "ON fi.product_id = pi.product_id "
+				+ "WHERE fi.user_id = ?";
 
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -70,7 +61,6 @@ public class FavoriteDAO {
 			ps.setString(2, product_id);
 
 			count = ps.executeUpdate();
-			System.out.println(count);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -79,29 +69,30 @@ public class FavoriteDAO {
 	}
 
 	// カートテーブルにInsertメソッド
-	public void insertFavorite(String user_id, String product_id) throws SQLException {
+	public int insertFavorite(String user_id, String product_id) throws SQLException {
 		DBConnector dbConnector = new DBConnector();
 		Connection connection = dbConnector.getConnection();
-		String insert = "INSERT INTO "
-						+ "favorite_info ("
-						+ "user_id,"
-						+ "product_id,"
-						+ "regist_date) "
-						+ "VALUES(?,?,?)";
+		String insert = "INSERT INTO " + "favorite_info (" + "user_id," + "product_id," + "regist_date) "
+				+ "VALUES(?,?,?)";
 
+		int count = 0;
 		try {
 			PreparedStatement ps = connection.prepareStatement(insert);
 			ps.setString(1, user_id);
 			ps.setString(2, product_id);
 			ps.setString(3, dateUtil.getDate());
 
-			ps.execute();
+//			ps.execute();
+
+			count = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			connection.close();
 		}
+
+		return count;
 	}
 
 }

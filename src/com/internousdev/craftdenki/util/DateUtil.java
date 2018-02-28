@@ -44,7 +44,6 @@ public class DateUtil {
 	 */
 	public static List<String> createMonthDayList(){
 		List<String> monthDayList = new ArrayList<>();
-		int d = 0;
 		DateTimeFormatter f = DateTimeFormatter.ofPattern("MM/dd");
 		for(int m = 1; m <= 12; m++) {
 			MonthDay mdSta = MonthDay.of(m, 1);

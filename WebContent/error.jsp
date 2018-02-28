@@ -1,13 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
 	pageEncoding="UTF-8"%>
-<%@ page import="javax.servlet.http.*"%>
-<%@ page import="javax.servlet.*"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
-
-<%
-	request.setCharacterEncoding("utf-8");
-%>
-<%@ page isErrorPage="true"%>
 
 
 <html>
@@ -88,6 +82,36 @@ table.table-header {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+#footer {
+	height: 70px;
+	background: #2c3e50;
+	width: 100%;
+}
+
+.under {
+	font-size: 20px;
+	color: white;
+	text-align: center;
+}
+
+.guide ul {
+	display: flex;
+	margin: 0;
+}
+
+.guide li {
+	list-style-type: none;
+	flex-grow: 1;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+
+#error {
+	text-align: center;
+}
 </style>
 <script src="js/jquery-1.8.2.min.js"></script>
 <link href="css/jquery.minimalect.css" rel="stylesheet">
@@ -138,12 +162,15 @@ table.table-header {
 		}
 	}
 </script>
+<link href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+	rel="stylesheet">
+<script src="js/footerFixed.js"></script>
 </head>
 <body class="home2">
 
 	<header>
 		<nav>
-			<a href="home.jsp"><div id="logo"></div></a>
+			<a href="start.jsp"><div id="logo"></div></a>
 
 			<div class="kara"></div>
 		</nav>
@@ -153,19 +180,27 @@ table.table-header {
 		</div>
 	</header>
 
-
-	<h2>エラーページです</h2>
-	<a href="home.jsp">最初から</a>やり直してください。
+	<h2 id="error">
+		エラーページです <a href="start.jsp">最初から</a>やり直してください。
 	</h2>
 
 
 
-	<p>エラー内容↓</p>
+	<footer id="footer">
+		<div id="footer">
+			<div class="under">CraftDenki All right reserved.</div>
+			<div class="guide">
 
-	<%
-		exception.printStackTrace(new java.io.PrintWriter(out));
-	%>
+				<ul>
+					<li>お問い合わせ</li>
+					<li>ヘルプ</li>
+					<li>ご利用ガイド</li>
+				</ul>
 
+			</div>
+
+		</div>
+	</footer>
 
 
 </body>

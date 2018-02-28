@@ -23,12 +23,12 @@ public class CheckUserIdDAO {
 
 			ResultSet rs = ps.executeQuery();
 
-			if(rs.next()) {
+			if (rs.next()) {
 				userInfoChangeDTO.setUserId(rs.getString("user_id"));
 				userInfoChangeDTO.setQuestion(rs.getInt("question"));
 			}
 
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 
 		} finally {

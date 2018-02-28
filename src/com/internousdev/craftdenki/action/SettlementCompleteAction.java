@@ -6,72 +6,82 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.internousdev.craftdenki.dao.CartDAO;
 import com.internousdev.craftdenki.dao.SettlementCompleteDAO;
 import com.internousdev.craftdenki.dto.CartDTO;
+import com.internousdev.craftdenki.dto.ProductDTO;
 import com.internousdev.craftdenki.dto.SettlementDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class SettlementCompleteAction extends ActionSupport implements SessionAware {
 	public Map<String, Object> session;
-	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
-
-
-
-	private SettlementCompleteDAO settlementCompleteDAO = new SettlementCompleteDAO();
-
 	private String userId;
 	private int productId;
 	private int productCount;
 	private int price;
 	private int atCost;
 	private String imageFilePath;
+	private int res1;
+	private int res2;
 
+	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
+	private SettlementCompleteDAO settlementCompleteDAO = new SettlementCompleteDAO();
 
-
-
-
-
-
-	@SuppressWarnings("unchecked")
 	public String execute() throws SQLException {
 
-		cartList = (ArrayList<CartDTO>) session.get("cartList");
-		userId = session.get("trueID").toString();
 
-		System.out.println(userId + "ユーザーID");
 
-//		System.out.println("在庫を減らします");
-//		 購入時、perchase_infoの在庫を減らす
-//		for (int i = 0; i < cartList.size(); i++) {
-//			ItemStockUpdateDAO dao = new ItemStockUpdateDAO();
-//			dao.itemStockUpdate(cartList.get(i).getProductCount(), cartList.get(i).getProductId());
-//		}
-//		System.out.println("在庫完了");
 
-		// atCostをproduct_infoテーブルから持ってくる
-		// for(int i=0; i<cartList.size(); i++){
-		// SettlementDTO dto =
-		// settlementCompleteDAO.getCurrentCost(cartList.get(i).getProductId());
-		// int atCost = dto.getAtCost();
-		// System.out.println(atCost + "atCostです");
-		// }
+			userId = session.get("trueID").toString();
+			CartDAO cartDAO = new CartDAO();
+			cartList = cartDAO.getCartInfo(userId);
 
-		System.out.println("履歴に追加します");
-		// 購入時、商品購入履歴テーブルにインサート
-		// 引数String userId,int productId,int productCount,int price,int atCost
-		for (int i = 0; i < cartList.size(); i++) {
-			SettlementDTO dto = settlementCompleteDAO.getCurrentCost(cartList.get(i).getProductId());
-			int atCost = dto.getAtCost();
-			System.out.println(atCost + "atCostです");
-			settlementCompleteDAO.insertPurchaseHistory(userId, cartList.get(i).getProductId(),
-					cartList.get(i).getProductCount(), cartList.get(i).getPrice(), atCost, getImageFilePath());
-		}
-		System.out.println("履歴完了");
 
-		System.out.println("カート情報を削除");
-		// カートの情報を削除
-		settlementCompleteDAO.deleteCartInfo(userId);
-		System.out.println("delete完了");
+
+
+
+
+
+			//カートに商品が入っているか確認
+
+			if(cartList.isEmpty()){
+				return ERROR;
+			}
+
+
+
+
+
+			// 購入時、商品購入履歴テーブルにインサート
+			// 引数(String userId,int productId,int productCount,int price,int
+			// atCost,String imageFilePath)
+			for (int i = 0; i < cartList.size(); i++) {
+				int productId = cartList.get(i).getProductId();
+
+				ProductDTO PDTO = settlementCompleteDAO.productConfirm(productId);
+
+				int status = PDTO.getStatus();
+
+				System.out.println(productId + "   +   " + status);
+
+				if (status == 0) {
+
+				SettlementDTO dto = settlementCompleteDAO.getCurrentCost(cartList.get(i).getProductId());
+				int atCost = dto.getAtCost();
+				res1 = settlementCompleteDAO.insertPurchaseHistory(userId, cartList.get(i).getProductId(),
+						cartList.get(i).getProductCount(), cartList.get(i).getPrice(), atCost, getImageFilePath());
+
+				}
+
+			}
+			// カートの情報を削除
+			res2 = settlementCompleteDAO.deleteCartInfo(userId);
+
+
+			if (res1 < 1 || res2 < 1) {  //インサート、デリートともに成功しているかの確認
+				return ERROR;
+			}
+
 
 		return SUCCESS;
 	}

@@ -6,64 +6,42 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.craftdenki.dao.ChangePasswordConfirmDAO;
-import com.internousdev.craftdenki.dto.UserInfoChangeDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
-
-
-/**
- *
- * @author internous
- *
- */
 public class ChangePasswordConfirmAction extends ActionSupport implements SessionAware {
 
-	private ChangePasswordConfirmDAO dao=new ChangePasswordConfirmDAO();
-
-	private UserInfoChangeDTO dto=new UserInfoChangeDTO();
-
+	private ChangePasswordConfirmDAO dao = new ChangePasswordConfirmDAO();
 	private String answer;
-
-
 	private String password;
-
 	private String checkPassword;
-
-	public Map<String,Object> session;
-
+	public Map<String, Object> session;
 	private String errorMessage;
-
 	private String result;
 
-	public String execute() throws SQLException{
+	public String execute() throws SQLException {
 
+		if (!(dao.checkAnswer2(answer, (String) (session.get("userId"))))) {
 
+			result = ERROR;
+			errorMessage = "答えが違います";
 
-
-		if(!(dao.checkAnswer2(answer,(String)(session.get("userId"))))){
-
-		result=ERROR;
-		errorMessage="答えが違います";
-
-		}else{
-
+		} else {
 
 			session.put("password", password);
 			session.put("answer", answer);
 
-		result=SUCCESS;
+			result = SUCCESS;
 		}
-
 
 		return result;
 
 	}
 
-
-	public String getAnswer(){
+	public String getAnswer() {
 		return answer;
 	}
-	public  void  setAnswer(String answer) {
+
+	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
 
@@ -75,7 +53,6 @@ public class ChangePasswordConfirmAction extends ActionSupport implements Sessio
 		this.password = password;
 	}
 
-
 	public String getCheckPassword() {
 		return checkPassword;
 	}
@@ -83,8 +60,6 @@ public class ChangePasswordConfirmAction extends ActionSupport implements Sessio
 	public void setCheckPassword(String checkPassword) {
 		this.checkPassword = checkPassword;
 	}
-
-
 
 	@Override
 	public void setSession(Map<String, Object> session) {
@@ -99,4 +74,3 @@ public class ChangePasswordConfirmAction extends ActionSupport implements Sessio
 		this.errorMessage = errorMessage;
 	}
 }
-

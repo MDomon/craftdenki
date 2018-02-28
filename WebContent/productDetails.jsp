@@ -94,8 +94,7 @@
 						<s:token />
 						<s:submit value=" カートに入れる" onclick="goCartInsertAction();">
 							<s:hidden name="product_id" value="%{session.d_product_id}" />
-							<s:hidden name="price" value="%{session.d_product_price}" />
-							<s:hidden name="item_stock" value="%{session.d_item_stock}" />
+
 						</s:submit>
 					</div>
 
@@ -103,8 +102,7 @@
 				<s:else>
 					<p>在庫がありません。</p>
 					<s:hidden name="product_id" value="%{session.d_product_id}" />
-					<s:hidden name="price" value="%{session.d_product_price}" />
-					<s:hidden name="item_stock" value="%{session.d_item_stock}" />
+
 				</s:else>
 				<br>
 				<%--非ログイン時は非表示 --%>
@@ -118,38 +116,6 @@
 
 			</s:form>
 		</div>
-		<%--
-	<s:if test="reviewList.size != 0 ">
-			<div id="reviewList">
-				<h2>この商品のレビュー</h2>
-				<s:iterator value="reviewList">
-				<div class="box1">
-					<div class="review">
-						ユーザー名:
-						<s:property value="user_id" />
-					</div>
-					<div class="review">
-						レビュー:
-						<s:property value="review_id" />
-					</div>
-					<div class="review">
-						評価:
-						<s:property value="evaluation_count" />
-					</div>
-					<div class="review">
-						投稿日時:
-						<s:property value="buy_item_date" />
-					</div>
-				</div>
-				</s:iterator>
-			</div>
-			<br>
-		</s:if>
-		<s:else>
-			<h2>レビューはありません。</h2>
-			<br>
-		</s:else> --%>
-
 
 		<h3>おすすめ関連商品</h3>
 
@@ -161,8 +127,7 @@
 				<a
 					href="<s:url action="ProductDetailsAction">
 				 <s:param name="product_id" value="%{product_id}" />
-				 <s:param name="item_stock" value="%{item_stock}" />
-				 <s:param name="category_id" value="%{category_id}" /> </s:url>">
+ </s:url>">
 
 
 					<li class="list1">

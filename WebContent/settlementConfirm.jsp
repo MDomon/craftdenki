@@ -16,14 +16,7 @@
 <link href="css/craftdenki.css" rel="stylesheet">
 
 <style>
-.cart-price {
-	float: right;
-	border-bottom: solid black 1px;
-	width: auto;
-	margin-right: 300px;
-	font-size: 18px;
-	font-weight: bold;
-}
+
 </style>
 
 <script>
@@ -51,7 +44,7 @@
 		<s:else>
 <p>&nbsp;&nbsp;</p>
 
-		<div class="buyer"><h4>購入者情報</h4></div>
+		<div class="buyer"><h5>購入者情報</h5></div>
 
 
 
@@ -80,7 +73,7 @@
 
 
 
-	<div class="buyeritem"><h4>購入商品情報</h4></div>
+	<div class="buyeritem"><h5>購入商品情報</h5></div>
 
 
 

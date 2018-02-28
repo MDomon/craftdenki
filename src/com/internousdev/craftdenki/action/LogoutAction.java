@@ -18,7 +18,6 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 		Random rnd = new Random();
 		session.put("temp_user_id", rnd);
 		System.out.println("ランダム" + rnd + " = ランダムID");
-		System.out.println("仮ユーザーID発行");
 
 		return SUCCESS;
 	}

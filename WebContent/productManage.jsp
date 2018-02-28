@@ -141,6 +141,7 @@
 				<br>
 
 				<span>商品詳細</span>
+				<span class="hissu">必須</span>
 				<div>
 					<s:textfield  name="newProductDescription" value="%{newProductDescription}" placeholder="250字以内 例)岡田隆先生の著書。ダイエット・減量の入門書!!"/>
 					<label for="dynamic-label-input">250字以内 例)岡田隆先生の著書。ダイエット・減量の入門書!!</label>
@@ -169,7 +170,7 @@
 				<span>発売年月</span>
 				<div>
 					<s:textfield  name="newReleaseDate" value="%{newReleaseDate}" placeholder="yyyy/MM 例)2018年2月は2017/02"/>
-					<label for="dynamic-label-input">yyyy/MM 例)2018年2月は2017/02</label>
+					<label for="dynamic-label-input">yyyy/MM 例)2018年2月は2018/02</label>
 				</div>
 
 				<br>

@@ -14,12 +14,9 @@ public class GoMyPageAction extends ActionSupport implements SessionAware {
 
 	public String execute() {
 
-		session.put("payment","");
+		session.put("payment", "");
 
 		if (session.containsKey("trueID")) {
-
-			System.out.println(session.get("trueID"));
-			System.out.println(session.get("trueID").toString());
 			result = SUCCESS;
 		} else {
 			session.put("status", "mypage");

@@ -16,7 +16,7 @@ public class CartAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private int product_id;
 	private int product_count;
-	private int finalPrice;
+	private long finalPrice;
 	private String price;
 	private String userId;
 	private String insertFlg = "0";
@@ -37,12 +37,9 @@ public class CartAction extends ActionSupport implements SessionAware {
 
 	private CartDAO cartDAO = new CartDAO();
 	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
-	private CartDTO stock;
+
 
 	public String execute() throws SQLException {
-		System.out.println("###########");
-		System.out.println(deleteList);
-		System.out.println("###########");
 		result = ERROR;
 
 		if (session.containsKey("trueID")) {
@@ -53,18 +50,27 @@ public class CartAction extends ActionSupport implements SessionAware {
 
 		// --------------------------------------------------------------------------------------------
 
+		if(product_count < 0){
+			result = ERROR;
+			return result;
+		}
+
 		if (insertFlg.equals("1")) {
 
 			CartDTO dto = cartDAO.Info(product_id);
 
 			int i = dto.getItem_stock();
 
-			System.out.println(i);
-			System.out.println(product_count);
 
 			if (i >= product_count) {
 
-				cartDAO.insertCart(userId, product_id, product_count, Integer.parseInt(price), item_stock);
+			int a=cartDAO.insertCart(userId, product_id, product_count, Integer.parseInt(price), item_stock);
+			if(a>0){
+				result=SUCCESS;
+			}else{
+				result=ERROR;
+			}
+
 			} else {
 				nothing = "1";
 				result = ERROR;
@@ -90,36 +96,31 @@ public class CartAction extends ActionSupport implements SessionAware {
 
 		} else {
 			if (deleteList != null) {
-				System.out.println("---------");
-				System.out.println(deleteList);
-				System.out.println("----------");
+
 				for (String deleteId : deleteList) {
 					int d = Integer.parseInt(deleteId);
 					CartDTO stock = cartDAO.deleteSelectCart(d);
-					System.out.println(deleteId + "111");
-					System.out.println(stock + "a");
 
 					int itemStock = stock.getItem_stock();
 					int productCount = stock.getProductCount();
 					int productId = stock.getProductId();
 					int price = stock.getPrice();
-					System.out.println("test");
 					finalPrice = finalPrice - price;
 					session.put("finalPrice", finalPrice);
 
-					System.out.println(itemStock + "b");
-					System.out.println(productCount + "c");
+					int res = cartDAO.deleteUpdateCart(productId, itemStock, productCount);
+					if(res>0){
+						cartDAO.deleteCart(userId, d);
 
-					cartDAO.deleteUpdateCart(productId, itemStock, productCount);
+						cartList = cartDAO.getCartInfo(userId);
 
-					cartDAO.deleteCart(userId, d);
-
-					cartList = cartDAO.getCartInfo(userId);
-
-					if (cartList.isEmpty()) {
-						nothing = null;
-					} else {
-						nothing = "1";
+						if (cartList.isEmpty()) {
+							nothing = null;
+						} else {
+							nothing = "1";
+						}
+					}else{
+						result=ERROR;
 					}
 				}
 			} else {
@@ -204,11 +205,11 @@ public class CartAction extends ActionSupport implements SessionAware {
 		this.deleteList = deleteList;
 	}
 
-	public int getFinalPrice() {
+	public long getFinalPrice() {
 		return finalPrice;
 	}
 
-	public void setFinalPrice(int finalPrice) {
+	public void setFinalPrice(long finalPrice) {
 		this.finalPrice = finalPrice;
 	}
 

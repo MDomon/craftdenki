@@ -12,8 +12,6 @@ import com.internousdev.craftdenki.util.DBConnector;
 
 public class SalesHistoryDAO {
 
-
-
 	/*
 	 * 共用
 	 */
@@ -22,47 +20,27 @@ public class SalesHistoryDAO {
 	private List<SalesHistoryDTO> salesHistoryList = new ArrayList<>();
 
 	/*
-	 * SQL
-	 * 全リスト取得
+	 * SQL 全リスト取得
 	 */
-	String salesAllSQL = "SELECT "
-							+ "phi.id id,"
-							+ "phi.product_id product_id,"
-							+ "phi.price price,"
-							+ "phi.product_count product_count,"
-							+ "phi.at_cost at_cost,"
-							+ "phi.regist_date purchase_date,"
-							+ "pi.product_name,"
-							+ "pi.product_name_kana,"
-							+ "pi.category_id,"
-							+ "mc.category_name,"
-							+ "phi.price * phi.product_count total_sales,"
-							+ "phi.at_cost * phi.product_count total_cost,"
-							+ "(phi.price - phi.at_cost) * phi.product_count profit "
-						+ "FROM "
-							+ "purchase_history_info phi "
-						+ "LEFT JOIN "
-							+ "product_info pi "
-							+ "ON "
-								+ "phi.product_id = pi.product_id "
-						+ "LEFT JOIN "
-							+ "m_category mc "
-							+ "ON "
-								+ "pi.category_id = mc.category_id "
-						+ "ORDER BY "
-							+ "purchase_date DESC";
+	String salesAllSQL = "SELECT " + "phi.id id," + "phi.product_id product_id," + "phi.price price,"
+			+ "phi.product_count product_count," + "phi.at_cost at_cost," + "phi.regist_date purchase_date,"
+			+ "pi.product_name," + "pi.product_name_kana," + "pi.category_id," + "mc.category_name,"
+			+ "phi.price * phi.product_count total_sales," + "phi.at_cost * phi.product_count total_cost,"
+			+ "(phi.price - phi.at_cost) * phi.product_count profit " + "FROM " + "purchase_history_info phi "
+			+ "LEFT JOIN " + "product_info pi " + "ON " + "phi.product_id = pi.product_id " + "LEFT JOIN "
+			+ "m_category mc " + "ON " + "pi.category_id = mc.category_id " + "ORDER BY " + "purchase_date DESC";
 
 	/*
 	 * 全売上取得メソッド
 	 */
-	public List<SalesHistoryDTO> salesAllList(){
+	public List<SalesHistoryDTO> salesAllList() {
 
 		try {
 			PreparedStatement ps = con.prepareStatement(salesAllSQL);
 
 			ResultSet rs = ps.executeQuery();
 
-			while(rs.next()) {
+			while (rs.next()) {
 
 				SalesHistoryDTO dto = new SalesHistoryDTO();
 

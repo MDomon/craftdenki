@@ -16,8 +16,6 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 	private String destination;
 	private String choseAddress;
 	private String choseNumber;
-
-	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
 	private String productName;
 	private String productNameKana;
 	private String imageFilePath;
@@ -25,39 +23,26 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 	private String releaseCompany;
 	private String releaseDate;
 	private String totalPrice;
-	private int finalPrice;
+	private long finalPrice;
 	private String message;
 
-
-
-
-
+	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
 
 	public String execute() throws SQLException {
-
-		session.put("payment", ""); // ユーザー変更画面へのフラグを消している
-
-		if (destination != null) {
-			session.put("destination", destination);
-		}
-		destination = (session.get("destination")).toString();
 
 		if (destination.equals("1")) {
 
 			choseAddress = session.get("userAddress").toString();
 			choseNumber = session.get("telNumber").toString();
-			System.out.println(choseAddress);
-			System.out.println(choseNumber);
-		} else if (session.get("destination").toString().equals("2")) {
+
+		} else if (destination.equals("2")) {
 			choseAddress = session.get("userAddress2").toString();
 			choseNumber = session.get("telNumber2").toString();
-			System.out.println(choseAddress);
-			System.out.println(choseNumber);
-		} else if (session.get("destination").toString().equals("3")) {
+
+		} else if (destination.equals("3")) {
 			choseAddress = session.get("userAddress3").toString();
 			choseNumber = session.get("telNumber3").toString();
-			System.out.println(choseAddress);
-			System.out.println(choseNumber);
+
 		}
 
 		// 購入する商品の情報を持ってくる
@@ -67,10 +52,11 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 		int size = cartList.size();
 		for (int i = 0; i < size; i++) {
 			finalPrice = finalPrice + cartList.get(i).getTotalPrice();
-		}
-		session.put("cartList", cartList);
 
-		if(cartList.isEmpty()){
+			session.put("cartList", cartList);
+		}
+
+		if (cartList.isEmpty()) {
 			message = "カートの中身がありません。";
 		}
 
@@ -141,11 +127,11 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 		this.totalPrice = totalPrice;
 	}
 
-	public int getFinalPrice() {
+	public long getFinalPrice() {
 		return finalPrice;
 	}
 
-	public void setFinalPrice(int finalPrice) {
+	public void setFinalPrice(long finalPrice) {
 		this.finalPrice = finalPrice;
 	}
 
@@ -188,6 +174,5 @@ public class SettlementConfirmAction extends ActionSupport implements SessionAwa
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
 
 }

@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <link href="css/craftdenki.css" rel="stylesheet">
 <!--<link href="css/userInfoChange.css" rel="stylesheet">-->
-<link href="css/nakajima.css" rel="stylesheet">
+<!--<link href="css/nakajima.css" rel="stylesheet">-->
 
 
 <!--<script src="js/jquery-3.3.1.min.js"></script>
@@ -55,7 +55,7 @@
 <table class="userCreateTable">
 	<tr class="userCreateTr">
 		<th class="userCreateTh">ユーザーID<em class="userCreateEm">※</em></th>
-			<td class="userCreateTd">　<input type="text" name="loginUserId"  maxlength="8" value='<s:property value="loginUserId"/>' class="validate[required,minSize[1],maxSize[8],custom[onlyLetterNumber]]" data-prompt-position="centerRight:0,-50"/>
+			<td class="userCreateTd">　<input type="text" name="loginUserId"  value='<s:property value="loginUserId"/>' class="validate[required,minSize[1],maxSize[8],custom[onlyLetterNumber]]" data-prompt-position="centerRight:0,-50"/>
 
 				<s:iterator value="errMsgListId">
 
@@ -67,7 +67,7 @@
 
 	<tr class="userCreateTr">
 		<th class="userCreateTh">パスワード<em class="userCreateEm">※</em></th>
-			<td class="userCreateTd">　<input type="password" name="loginPassword" maxlength="16" class="validate[required,minSize[1],maxSize[16],custom[onlyLetterNumber]]" data-prompt-position="centerRight:0,-50"/>
+			<td class="userCreateTd">　<input type="password" name="loginPassword"  class="validate[required,minSize[1],maxSize[16],custom[onlyLetterNumber]]" data-prompt-position="centerRight:0,-50"/>
 				<s:iterator value="errMsgListPass">
 					<div class="aka"><s:property /></div>
 				</s:iterator>
@@ -76,7 +76,7 @@
 
 	<tr class="userCreateTr">
 		<th class="userCreateTh">お名前<em class="userCreateEm">※</em></th>
-			<td class="userCreateTd">　<input type="text" id="familyName" name="familyName" maxlength="16" value='<s:property value="familyName"/>' class="validate[required,minSize[1],maxSize[16]]" data-prompt-position="centerRight:0,-50"/>(姓)　
+			<td class="userCreateTd">　<input type="text" id="familyName" name="familyName"  value='<s:property value="familyName"/>' class="validate[required,minSize[1],maxSize[16]]" data-prompt-position="centerRight:0,-50"/>(姓)　
 				<input type="text" id="firstName" name="firstName" value='<s:property value="firstName"/>' class="validate[required,minSize[1],maxSize[16]]"data-prompt-position="centerRight:0,-50"/>(名)
 
 				<s:iterator value="errMsgListName">
@@ -87,8 +87,8 @@
 
 	<tr class="userCreateTr">
 		<th class="userCreateTh">ふりがな<em class="userCreateEm">※</em></th>
-			<td class="userCreateTd">　<input type="text" id="familyNameKana" name="familyNameKana"  maxlength="16" value='<s:property value="familyNameKana"/>' class="validate[required,minSize[1],maxSize[16],custom[furigana]]" data-prompt-position="centerRight:0,-50"/>(せい)
-    			<input type="text" id="firstNameKana" name="firstNameKana" maxlength="16" value='<s:property value="firstNameKana"/>' class="validate[required,minSize[1],maxSize[16],custom[furigana]]"data-prompt-position="centerRight:0,-50"/>(めい)
+			<td class="userCreateTd">　<input type="text" id="familyNameKana" name="familyNameKana" value='<s:property value="familyNameKana"/>' class="validate[required,minSize[1],maxSize[16],custom[furigana]]" data-prompt-position="centerRight:0,-50"/>(せい)
+    			<input type="text" id="firstNameKana" name="firstNameKana" value='<s:property value="firstNameKana"/>' class="validate[required,minSize[1],maxSize[16],custom[furigana]]"data-prompt-position="centerRight:0,-50"/>(めい)
 
     			<s:iterator value="errMsgListKana">
 					<div class="aka"><s:property /></div>
@@ -117,7 +117,7 @@
 
 	<tr class="userCreateTr">
 		<th class="userCreateTh">メールアドレス<em class="userCreateEm">※</em></th>
-			<td class="userCreateTd">　<input type="email" name="mail" value='<s:property value="mail"/>' maxlength="32" class="validate[required,minSize[14],maxSize[32],custom[email]]"data-prompt-position="centerRight:0,-50"/>
+			<td class="userCreateTd">　<input type="email" name="mail" value='<s:property value="mail"/>' class="validate[required,minSize[14],maxSize[32],custom[email]]"data-prompt-position="centerRight:0,-50"/>
 				<s:iterator value="errMsgListMail">
 					<div class="aka"><s:property /></div>
 				</s:iterator>
@@ -167,7 +167,7 @@
 
 	<tr class="userCreateTr">
 		<th class="userCreateTh">答え<em class="userCreateEm">※</em></th>
-			<td class="userCreateTd">　<input type="text" name="secretAnswer" maxlength="16" value='<s:property value="secretAnswer"/>' class="validate[required,minSize[1],maxSize[16]]"data-prompt-position="centerRight:0,-50">
+			<td class="userCreateTd">　<input type="text" name="secretAnswer" value='<s:property value="secretAnswer"/>' class="validate[required,minSize[1],maxSize[16]]"data-prompt-position="centerRight:0,-50">
 				<s:iterator value="errMsgListAnswer">
 					<div class="aka"><s:property /></div>
 				</s:iterator>
@@ -182,7 +182,7 @@
 
 	<tr class="userCreateTr">
 		<th class="userCreateTh">住所<em class="userCreateEm">※</em></th>
-			<td class="userCreateTd">　<input type="text" name="address" value='<s:property value="address"/>' size="50" maxlength="50" class="validate[required,minSize[10],maxSize[50]]"data-prompt-position="centerRight:0,-50">
+			<td class="userCreateTd">　<input type="text" name="address" value='<s:property value="address"/>' size="50" class="validate[required,minSize[10],maxSize[50]]"data-prompt-position="centerRight:0,-50">
 				<s:iterator value="errMsgListAddress">
 					<div class="aka"><s:property /></div>
 				</s:iterator>
@@ -191,7 +191,7 @@
 
 	<tr class="userCreateTr">
 		<th class="userCreateTh">電話番号<em class="userCreateEm">※</em></th>
-			<td class="userCreateTd">　<input type="text" name="tel" value='<s:property value="tel" />' maxlength="13" class="validate[required,minSize[10],maxSize[13],custom[phone]]" data-prompt-position="centerRight:0,-50">
+			<td class="userCreateTd">　<input type="text" name="tel" value='<s:property value="tel" />'  class="validate[required,minSize[10],maxSize[13],custom[phone]]" data-prompt-position="centerRight:0,-50">
 				<s:iterator value="errMsgListTel">
 					<div class="aka"><s:property /></div>
 				</s:iterator>

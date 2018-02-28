@@ -17,7 +17,7 @@
 				<td><s:textarea name="review" rows="10" cols="60"></s:textarea></td>
 			</tr>
 			<tr>
-				<td>☆： <select name="evaluationCount" required>
+				<td>☆： <select name="evaluationCount">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>

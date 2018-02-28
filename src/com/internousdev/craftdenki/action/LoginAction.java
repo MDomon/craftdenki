@@ -21,23 +21,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private String loginPassword = "a";
 	private String IDerrormsg;
 	private String Passerrormsg;
+	private int i;
 
 	public String execute() {
-
-
-//		firstname
-//		familyname
-//		familynamekana
-//		firstnamekana
-//		sex
-//		mail
-//		以上をsessionに入れて
-//		ログイン後のマイページで表示する
-//
-//
-//
-
-
 
 		session.put("unknown", "");
 		session.put("IDerror", "");
@@ -92,6 +78,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 		dto = dao.loginUserInfo(loginId, loginPassword);
 
+		System.out.println(dto.getLoginId());
+		System.out.println(dto.getLoginPass());
+
 		if (session.containsKey("status")) {
 		} else {
 			session.put("status", "");
@@ -103,6 +92,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 		}
 
+		System.out.println(dto.getLoginId());
+		System.out.println(dto.getLoginPass());
+
 		if (IDerrormsg == null) {
 			if (Passerrormsg == null) {
 				if ((dto.getLoginId()).equals("craft")) {
@@ -113,8 +105,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
 						result = "master";
 						return result;
 					}
+
 				} else if (dto.getLoginId().equals(loginId)) {
 					if (dto.getLoginPass().equals(loginPassword)) {
+						System.out.println("aaa");
 						session.put("trueID", loginId);
 						session.put("loginId", dto.getLoginId()); // 使ってないかも
 						session.put("loginPass", dto.getLoginPass());
@@ -125,32 +119,37 @@ public class LoginAction extends ActionSupport implements SessionAware {
 						session.put("sex", dto.getSex());
 						session.put("mail", dto.getMail());
 
-
-						dao.cartInfo(session.get("temp_user_id").toString(), loginId);
-
 						if (session.get("status") == ("settlement")) {
 							session.put("IDerror", ""); // 使ってないかも
 							session.put("Passerror", ""); // 使ってないかも
 							session.put("status", "");
-							dao.cartInfo(session.get("temp_user_id").toString(), dto.getLoginId());
-							result = "settlement";
-							return result;
+							i = dao.cartInfo(session.get("temp_user_id").toString(), dto.getLoginId());
+
+							if (i >= 0) {
+								result = "settlement";
+								return result;
+							}
 						} else if (session.get("status") == ("mypage")) {
 							session.put("IDerror", "");
 							session.put("Passerror", "");
 							session.put("status", "");
 
-							dao.cartInfo(session.get("temp_user_id").toString(), dto.getLoginId());
+							i = dao.cartInfo(session.get("temp_user_id").toString(), dto.getLoginId());
 
-							result = "myPage";
-							return result;
+							if (i >= 0) {
+								result = "myPage";
+								return result;
+							}
 
 						} else {
+							System.out.println("ssss");
 							session.put("IDerror", "");
 							session.put("Passerror", "");
-							dao.cartInfo(session.get("temp_user_id").toString(), dto.getLoginId());
-							result = "myPage";
-							return result;
+							i = dao.cartInfo(session.get("temp_user_id").toString(), dto.getLoginId());
+							if (i >= 0) {
+								result = "myPage";
+								return result;
+							}
 						}
 
 					}
@@ -187,6 +186,14 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	public void setLoginPassword(String loginPassword) {
 		this.loginPassword = loginPassword;
+	}
+
+	public int getI() {
+		return i;
+	}
+
+	public void setI(int i) {
+		this.i = i;
 	}
 
 }

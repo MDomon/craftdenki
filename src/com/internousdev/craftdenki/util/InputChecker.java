@@ -53,7 +53,7 @@ public class InputChecker {
 		String result = "OK";
 
 		if (!newProductDescription.equals("") && newProductDescription.length() > 255) {
-			result = "商品詳細は255文字以下で入力してください。";
+			result = "商品詳細は250文字以下で入力してください。";
 		} else if (!newProductDescription.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶ\\n\\r!?！？、。,.-ー・「」｢｣『』 ]+$")) {
 				result = "商品詳細は半角英語、漢字、ひらがな、カタカナで入力してください。";
 		}

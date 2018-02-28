@@ -17,7 +17,7 @@
 <body class="back-image step3">
 	<div class="main">
 		<div id="m-title">
-			<p>商品削除確認画面</p>
+			<p>商品復元確認画面</p>
 		</div>
 		<div>
 			<s:form action="ProductRestoreCompleteAction">

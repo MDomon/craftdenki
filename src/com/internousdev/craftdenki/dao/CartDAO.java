@@ -46,6 +46,9 @@ public class CartDAO {
 				dto.setReleaseDate(resultSet.getString("release_date"));
 				dto.setTotalPrice(resultSet.getInt("total_price"));
 
+				System.out.println("合計金額");
+				System.out.println("total_price");
+
 				finalPrice += (resultSet.getInt("total_price"));
 				dto.setFinalPrice(finalPrice);
 
@@ -79,12 +82,11 @@ public class CartDAO {
 	}
 
 	// カート情報削除メソッド(IDの引数無し)
-		public int deleteCart(String user_id)  {
+	public int deleteCart(String user_id) {
 
-			res=0;
-			return res;
-		}
-
+		res = 0;
+		return res;
+	}
 
 	// カート情報削除時の在庫数と商品数を取得
 	public CartDTO deleteSelectCart(int id) throws SQLException {
@@ -103,44 +105,42 @@ public class CartDAO {
 				dto.setProductCount(resultSet.getInt("product_count"));
 				dto.setProductId(resultSet.getInt("product_id"));
 				dto.setPrice(resultSet.getInt("price"));
-				System.out.println(resultSet.getInt("item_stock"));
-				System.out.println(resultSet.getInt("product_count"));
+
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(dto + "dkjafm;ncvn");
+
 		return dto;
 	}
 
 	// カート情報削除時に在庫数を元に戻す
-	public void deleteUpdateCart(int id, int item_stock, int product_count) throws SQLException {
+	public int deleteUpdateCart(int id, int item_stock, int product_count) throws SQLException {
 
 		String update2 = "UPDATE product_info SET item_stock = ? WHERE product_id = ?";
 		totalItem_stock2 = item_stock + product_count;
-		System.out.println(item_stock);
-		System.out.println(product_count);
-		System.out.println(totalItem_stock2);
 
 		try {
 
 			PreparedStatement ps2 = connection.prepareStatement(update2);
 			ps2.setInt(1, totalItem_stock2);
 			ps2.setInt(2, id);
-			ps2.executeUpdate();
+			res=ps2.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return res;
 	}
+
 
 	public CartDTO Info(int product_id) {
 		DBConnector dbConnector = new DBConnector();
 		Connection connection = dbConnector.getConnection();
 		CartDTO dto = new CartDTO();
 
-		String confirm = " SELECT item_stock FROM product_info where product_id = ?";
+		String confirm = " SELECT item_stock,price FROM product_info where product_id = ?";
 
 		try {
 			PreparedStatement ps3 = connection.prepareStatement(confirm);
@@ -150,6 +150,7 @@ public class CartDAO {
 
 			if (rs.next()) {
 				dto.setItem_stock(rs.getInt("item_stock"));
+				dto.setPrice(rs.getInt("price"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -158,14 +159,15 @@ public class CartDAO {
 	}
 
 	// カートテーブルにInsertメソッド
-	public void insertCart(String userId, int product_id, int product_count, int price, int item_stock)
+	public int insertCart(String userId, int product_id, int product_count, int price, int item_stock)
 			throws SQLException {
 		DBConnector dbConnector = new DBConnector();
 		Connection connection = dbConnector.getConnection();
 		int totalPrice = product_count * price;
 		totalItem_stock = item_stock - product_count;
+		int a=0;
 
-		String insert = "INSERT INTO cart_info (user_id,product_id,product_count,price,regist_date,update_date,total_price) VALUES(?,?,?,?,?,?,?)";
+		String insert = "INSERT INTO cart_info (user_id,product_id,product_count,price,regist_date,total_price) VALUES(?,?,?,?,?,?)";
 		String update1 = "UPDATE product_info SET item_stock = ? WHERE product_id = ?";
 
 		try {
@@ -175,21 +177,20 @@ public class CartDAO {
 			ps.setInt(3, product_count);
 			ps.setInt(4, price);
 			ps.setString(5, dateUtil.getDate());
-			ps.setString(6, dateUtil.getDate());
-			ps.setInt(7, totalPrice);
+			ps.setInt(6, totalPrice);
 
 			ps.execute();
 
 			PreparedStatement ps2 = connection.prepareStatement(update1);
 			ps2.setInt(1, totalItem_stock);
 			ps2.setInt(2, product_id);
-			ps2.executeUpdate();
+			a=ps2.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			connection.close();
-		}
+		}return a;
 	}
 
 }

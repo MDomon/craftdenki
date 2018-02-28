@@ -8,37 +8,36 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.internousdev.craftdenki.dao.ProductDetailsDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ProductRestoreCompleteAction extends ActionSupport implements SessionAware{
-	public Map<String,Object> session;
+public class ProductRestoreCompleteAction extends ActionSupport implements SessionAware {
+	public Map<String, Object> session;
 
 	private String errorMessage;
 
-	private String product_id; //商品ID
+	private String product_id; // 商品ID
 
-	public String execute() throws SQLException{
+	public String execute() throws SQLException {
 		String result = ERROR;
 
-
-
-		if(session.get("master_flg") == "1"){      //管理者判定
+		if (session.get("master_flg") == "1") { // 管理者判定
 			result = SUCCESS;
 
-			//「, 」区切りの文字列からString配列へ
-			String[] productIdList = product_id.split(", ",0);
+			// 「, 」区切りの文字列からString配列へ
+			String[] productIdList = product_id.split(", ", 0);
 
 			ProductDetailsDAO dao = new ProductDetailsDAO();
 			int res = 0;
-			//productIdが一致する商品を復元する
-			for(String productId : productIdList) {
+			// productIdが一致する商品を復元する
+			for (String productId : productIdList) {
 				res = dao.productRestoreHide(productId);
-				//処理できなかったらerrorM.jspへ
-				if(res == 0) {
+				// 処理できなかったらerrorM.jspへ
+				if (res == 0) {
 					errorMessage = "処理できなかった商品があります。お手数ですが再度処理をお願いいたします。";
 					result = ERROR;
 				}
 			}
 
-		}else errorMessage = "不正なアクセスです。もう一度ログインをお願いいたします。";
+		} else
+			errorMessage = "不正なアクセスです。もう一度ログインをお願いいたします。";
 		return result;
 	}
 

@@ -15,7 +15,7 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private int product_id;
 	private int product_count;
-	private int finalPrice;
+	private long finalPrice;
 	private String price;
 	private String userId;
 	private String insertFlg = "0";
@@ -24,10 +24,8 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 	private String id;
 	private String result;
 
-
 	private CartDAO cartDAO = new CartDAO();
 	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
-	private CartDTO stock;
 
 	public String execute() throws SQLException {
 
@@ -41,18 +39,33 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 
 		// --------------------------------------------------------------------------------------------
 
+		if (product_count < 0) {
+			result = ERROR;
+			return result;
+		}
+
 		if (insertFlg.equals("1")) {
+
+			cartList = cartDAO.getCartInfo(userId);
+			finalPrice = cartDAO.finalPrice;
+			System.out.println(finalPrice);
 
 			CartDTO dto = cartDAO.Info(product_id);
 
 			int i = dto.getItem_stock();
 
-			System.out.println(i);
-			System.out.println(product_count);
+			int itemStock = dto.getItem_stock();
+			int Price = dto.getPrice();
+
+			System.out.println(itemStock);
+			System.out.println(Price);
 
 			if (i >= product_count) {
 
-				cartDAO.insertCart(userId, product_id, product_count, Integer.parseInt(price), item_stock);
+				int a=cartDAO.insertCart(userId, product_id, product_count, Price, itemStock);
+				if(a>0){
+					result=SUCCESS;
+				}
 			} else {
 				nothing = "1";
 				result = ERROR;
@@ -63,15 +76,15 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 		}
 		// --------------------------------------------------------------------------------------------
 
-			cartList = cartDAO.getCartInfo(userId);
-			finalPrice = cartDAO.finalPrice;
-			session.put("finalPrice", finalPrice);
-			session.put("cartList", cartList);
-			if (cartList.isEmpty()) {
-				nothing = null;
-			} else {
-				nothing = "1";
-			}
+		cartList = cartDAO.getCartInfo(userId);
+		finalPrice = cartDAO.finalPrice;
+		session.put("finalPrice", finalPrice);
+		session.put("cartList", cartList);
+		if (cartList.isEmpty()) {
+			nothing = null;
+		} else {
+			nothing = "1";
+		}
 
 		result = SUCCESS;
 		return result;
@@ -80,11 +93,10 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 	public String getNothing() {
 		return nothing;
 	}
-	
+
 	public void setNothing(String nothing) {
 		this.nothing = nothing;
 	}
-
 
 	@Override
 	public void setSession(Map<String, Object> session) {
@@ -135,13 +147,11 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 		this.insertFlg = insertFlg;
 	}
 
-
-
-	public int getFinalPrice() {
+	public long getFinalPrice() {
 		return finalPrice;
 	}
 
-	public void setFinalPrice(int finalPrice) {
+	public void setFinalPrice(long finalPrice) {
 		this.finalPrice = finalPrice;
 	}
 
@@ -156,8 +166,6 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 	public void setItem_stock(int item_stock) {
 		this.item_stock = item_stock;
 	}
-
-
 
 	public String getId() {
 		return id;

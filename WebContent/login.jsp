@@ -17,24 +17,22 @@
 
 
 <style>
-
 </style>
 </head>
 <body>
 	<jsp:include page="home2.jsp" />
 	<div class="main">
 
-				<br>
-				<br>
-				<s:if test="session.status == 'settlement'">
-				<h2>商品購入前にログインしてください。</h2>
-				</s:if>
+		<br> <br>
+		<s:if test="session.status == 'settlement'">
+			<h2>商品購入前にログインしてください。</h2>
+		</s:if>
 
 		<div class="Abox">
 
 			<div class="Bbox">
 
-				<div id="box">ξ　　　　ロ グ イ ン　　　　ξ</div>
+				<div id="box">ξ ロ グ イ ン ξ</div>
 
 				<s:form action="LoginAction">
 
@@ -80,8 +78,10 @@
 						</tr>
 
 						<tr>
-							<td><br><div id="message"> <s:submit value="ログイン" size="30"
-									class="button" /></div></td>
+							<td><br>
+							<div id="message">
+									<s:submit value="ログイン" size="30" class="button" />
+								</div></td>
 						</tr>
 
 					</table>
@@ -111,30 +111,34 @@
 					<tr>
 						<td>
 							<div id="box">
-								ξ　　　　新 規 登 録 　　　　ξ<br>
+								ξ 新 規 登 録 ξ<br>
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<div id="message"><br> <br>
-								会員登録をお願いします。 <br> <br> 会員登録は無料です。<br> <br>
+							<div id="message">
+								<br> <br> 会員登録をお願いします。 <br> <br> 会員登録は無料です。<br>
+								<br>
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td><div id="message"><s:form action="UserCreateAction"><br>
-								<s:submit value="新規登録" class="button" />
-							</s:form></div></td>
+						<td><div id="message">
+								<s:form action="UserCreateAction">
+									<br>
+									<s:submit value="新規登録" class="button" />
+								</s:form>
+							</div></td>
 					</tr>
 				</table>
 			</div>
 		</div>
 
-</div>
+	</div>
 
 
-<div id="a"></div>
+	<div id="a"></div>
 	<jsp:include page="footer.jsp" />
 
 </body>

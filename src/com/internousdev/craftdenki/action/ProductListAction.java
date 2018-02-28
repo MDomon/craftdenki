@@ -13,20 +13,18 @@ import com.internousdev.craftdenki.dto.ProductDTO;
 import com.internousdev.craftdenki.util.ProductListChange;
 import com.opensymphony.xwork2.ActionSupport;
 
+public class ProductListAction extends ActionSupport implements SessionAware {
 
-
-public class ProductListAction extends ActionSupport implements SessionAware{
-
-	//セッション情報取得
+	// セッション情報取得
 	public Map<String, Object> session;
 
-	//商品情報取得
+	// 商品情報取得
 	private ProductListDAO productListDAO = new ProductListDAO();
 
-	//商品情報格納
+	// 商品情報格納
 	public ArrayList<ProductDTO> productList = new ArrayList<ProductDTO>();
 
-	//productListを9個ごとに格納したList
+	// productListを9個ごとに格納したList
 	private ArrayList<ArrayList<ProductDTO>> trueList = new ArrayList<>();
 
 	private int pageSelect;
@@ -35,49 +33,30 @@ public class ProductListAction extends ActionSupport implements SessionAware{
 
 	private List<Integer> pageList = new ArrayList<>();
 
+	public String execute() throws SQLException {
 
-
-	public String execute() throws SQLException{
-
-		/**
-		 * 確認
-		 */
-		System.out.println("pageSelect");
-		System.out.println(pageSelect);
-
-		//商品情報取得メソッド
+		// 商品情報取得メソッド
 		productList = productListDAO.getProductInfo();
 
 		Iterator<ProductDTO> iterator = productList.iterator();
-		if(!(iterator.hasNext())){
+		if (!(iterator.hasNext())) {
 			productList = null;
 		}
 
-		//productListを9個ごとに格納
+		// productListを9個ごとに格納
 		ProductListChange change = new ProductListChange();
 		trueList = change.productListChange(productList);
 
-		for(int i = 0; i < trueList.size(); i++){
+		for (int i = 0; i < trueList.size(); i++) {
 			pageList.add(i + 1);
 		}
 
-		//ページ表示の確認
-
-		for(ArrayList<ProductDTO> array: trueList){
-			for(ProductDTO dto: array){
-				System.out.println(dto.getId());
-			}
-		}
-
-		for(int i = 0; i < trueList.size(); i++){
-			if(i == pageSelect){
+		for (int i = 0; i < trueList.size(); i++) {
+			if (i == pageSelect) {
 				productList = trueList.get(i);
 				break;
 			}
 		}
-
-
-
 
 		String result = SUCCESS;
 		return result;
@@ -85,25 +64,27 @@ public class ProductListAction extends ActionSupport implements SessionAware{
 	}
 
 	@Override
-	public void setSession(Map<String, Object> session){
+	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	public Map<String, Object> getSession(){
+
+	public Map<String, Object> getSession() {
 		return session;
 	}
 
-
-	public ProductListDAO getProductListDAO(){
+	public ProductListDAO getProductListDAO() {
 		return productListDAO;
 	}
-	public void setProductListDAO(ProductListDAO productListDAO){
+
+	public void setProductListDAO(ProductListDAO productListDAO) {
 		this.productListDAO = productListDAO;
 	}
 
-	public ArrayList<ProductDTO> getProductList(){
+	public ArrayList<ProductDTO> getProductList() {
 		return productList;
 	}
-	public void setProductList(ArrayList<ProductDTO> productList){
+
+	public void setProductList(ArrayList<ProductDTO> productList) {
 		this.productList = productList;
 	}
 
@@ -138,7 +119,5 @@ public class ProductListAction extends ActionSupport implements SessionAware{
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
 	}
-
-
 
 }

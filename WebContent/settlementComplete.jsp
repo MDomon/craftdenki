@@ -14,7 +14,8 @@
 <meta http-equiv="refresh"
 	content="3;URL=<s:url action='StartAction' />">
 <title>決済完了画面</title>
-<link href="./css/sano.css" rel="stylesheet">
+
+<link href="css/craftdenki.css" rel="stylesheet">
 <style>
 </style>
 
@@ -24,8 +25,7 @@
 
 	<div class="main">
 
-
-
+<div class="empty">
 
 
 		<h3>購入完了画面</h3>
@@ -35,6 +35,8 @@
 			<h2>購入が完了しました。3秒後に自動でHome画面に戻ります。</h2>
 			<span>自動で切り替わらない場合には<a href='<s:url action="StartAction"/>'>こちら</a></span>
 		</div>
+
+</div>
 
 	</div>
 

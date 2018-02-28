@@ -15,16 +15,10 @@
 
 
 <div id="footer">
-	<div class="under">
-            CraftDenki All right reserved.
+	<div class="under"><br>
+            CraftDenki All rights reserved.
     </div>
         <div class="guide">
-
-            <ul>
-                <li>お問い合わせ</li>
-                <li>ヘルプ</li>
-                <li>ご利用ガイド</li></ul>
-
     </div>
 
 </div>

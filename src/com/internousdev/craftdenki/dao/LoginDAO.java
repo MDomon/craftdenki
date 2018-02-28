@@ -13,8 +13,12 @@ public class LoginDAO {
 	private LoginDTO dto = new LoginDTO();
 	private DBConnector db = new DBConnector();
 	private Connection con = db.getConnection();
+	private int i;
 
 	public LoginDTO loginUserInfo(String loginId, String loginPassword) {
+
+		System.out.println(loginId);
+		System.out.println(loginPassword);
 
 		String sql = "select*from user_info where user_id = ? and password = ?";
 
@@ -27,6 +31,10 @@ public class LoginDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
+
+				System.out.println(rs.getString("user_id"));
+				System.out.println(rs.getString("password"));
+
 				dto.setLoginId(rs.getString("user_id"));
 				dto.setLoginPass(rs.getString("password"));
 				dto.setFirstName(rs.getString("first_name"));
@@ -47,7 +55,7 @@ public class LoginDAO {
 		return dto;
 	}
 
-	public void cartInfo(String tempUserId, String loginId) {
+	public int cartInfo(String tempUserId, String loginId) {
 
 		String sql = "update cart_info set user_id= ? where user_id = ?";
 
@@ -57,14 +65,21 @@ public class LoginDAO {
 			ps.setString(1, loginId);
 			ps.setString(2, tempUserId);
 
-			int rs = ps.executeUpdate();
-			if (rs >= 0) {
-				System.out.println(rs + "件更新しました");
-			}
+			i = ps.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
+		return i;
+	}
+
+	public int getI() {
+		return i;
+	}
+
+	public void setI(int i) {
+		this.i = i;
 	}
 
 }

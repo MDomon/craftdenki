@@ -11,50 +11,41 @@ import com.internousdev.craftdenki.dao.ProductListDAO;
 import com.internousdev.craftdenki.dto.ProductDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ProductHideConfirmAction extends ActionSupport implements SessionAware{
-	public Map<String,Object> session;
+public class ProductHideConfirmAction extends ActionSupport implements SessionAware {
+	public Map<String, Object> session;
 	private String errorMessage;
 
-
 	/*
-	 * checkした行の商品IDが入ったCollection
-	 * 受け取り用
+	 * checkした行の商品IDが入ったCollection 受け取り用
 	 */
 	private List<String> checkList;
 	/*
-	 * checkした行の商品IDと商品名が入ったCollection
-	 * 渡す用
+	 * checkした行の商品IDと商品名が入ったCollection 渡す用
 	 */
 	private List<ProductDTO> productHideList = new ArrayList<>();
 
-
-
-
-
-	public String execute() throws SQLException{
+	public String execute() throws SQLException {
 		String result = ERROR;
 
-		if(session.get("master_flg") == "1"){      //管理者判定
+		if (session.get("master_flg") == "1") { // 管理者判定
 			result = SUCCESS;
 
-			//checkListがnullならerrorM.jspへ
-			if(checkList == null) {
+			// checkListがnullならerrorM.jspへ
+			if (checkList == null) {
 				errorMessage = "削除する商品がチェックされていません。再度処理をお願いいたします。";
 				result = ERROR;
 				return result;
 			}
 
-
-			//商品一覧を取得
+			// 商品一覧を取得
 			ProductListDAO productListDAO = new ProductListDAO();
 			List<ProductDTO> productList = new ArrayList<>();
 			productList = productListDAO.getProductInfo();
 
-
-			//チェックした商品IDとその商品名のproductDTOをproductHideListに格納
-			for(ProductDTO dto : productList) {
-				for(String productId : checkList) {
-					if(dto.getProduct_id() == Integer.parseInt(productId)){
+			// チェックした商品IDとその商品名のproductDTOをproductHideListに格納
+			for (ProductDTO dto : productList) {
+				for (String productId : checkList) {
+					if (dto.getProduct_id() == Integer.parseInt(productId)) {
 						ProductDTO hideDto = new ProductDTO();
 						hideDto.setProduct_id(Integer.parseInt(productId));
 						hideDto.setProduct_name(dto.getProduct_name());
@@ -63,31 +54,40 @@ public class ProductHideConfirmAction extends ActionSupport implements SessionAw
 				}
 			}
 
-		}else errorMessage = "不正なアクセスです。もう一度ログインをお願いいたします。";
+		} else
+			errorMessage = "不正なアクセスです。もう一度ログインをお願いいたします。";
 		return result;
 	}
+
 	@Override
-	public void setSession(Map<String,Object> session){
+	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
+
 	public String getErrorMessage() {
 		return errorMessage;
 	}
+
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
+
 	public Map<String, Object> getSession() {
 		return session;
 	}
-	public List<String> getCheckList(){
+
+	public List<String> getCheckList() {
 		return checkList;
 	}
+
 	public void setCheckList(List<String> checkList) {
 		this.checkList = checkList;
 	}
+
 	public List<ProductDTO> getProductHideList() {
 		return productHideList;
 	}
+
 	public void setProductHideList(List<ProductDTO> productHideList) {
 		this.productHideList = productHideList;
 	}

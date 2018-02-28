@@ -18,9 +18,13 @@
 	}
 
 	.main{
-		margin-right:150px;
-		margin-left:150px;
-		margin-bottom:200px;
+		/*margin-right:150px;
+		margin-left:0px;
+		margin-bottom:200px;*/
+		width:1300px;
+		margin-right: auto;
+		margin-left : auto;
+		padding-bottom:100px;
 	}
 
 	h1{
@@ -443,6 +447,52 @@
 				}
 
 
+			/* ステップバー */
+				.stepBar {
+					  display: flex;
+					  max-width: 400px;
+					  position: relative;
+					  margin: 20px auto;
+					  text-align: center;
+					}
+					.stepBar li {
+					  font-size: 12px;
+					  list-style: none;
+					  position: relative;
+					  width: 33.333%;
+					}
+					.stepBar li:after {
+					  background: #D0E1F9;
+					  content: "";
+					  width: calc(100% - 24px);
+					  height: 4px;
+					  position: absolute;
+					  left: calc(-50% + 12px);
+					  top: 10px;
+					}
+					.stepBar li:first-child:after {
+					  display: none;
+					}
+					.stepBar li span {
+					  background: #D0E1F9;
+					  color: #ffffff;
+					  display: inline-block;
+					  height: 24px;
+					  margin-bottom: 5px;
+					  line-height: 24px;
+					  width: 24px;
+					  -moz-border-radius: 50%;
+					  -webkit-border-radius: 50%;
+					  border-radius: 50%;
+					}
+					.stepBar .visited:after {
+					  background: #4D648D;
+					}
+					.stepBar .visited span {
+					  background: #4D648D;
+					}
+
+
 
 /*==================================アイテム表示css===========================================*/
 	/*------------------共通部分------------------*/
@@ -532,7 +582,7 @@ td {
 
 /* --- リストエリア --- */
 ul.thumbnail {
-width: 91%; /* リストエリアの幅 */
+width: 1283px; /* リストエリアの幅 */
 margin: 0;
 padding: 30px 0 0; /* リストエリアのパディング（上、左右、下） */
 list-style-type: none;
@@ -673,7 +723,8 @@ pd-cart{
 	/* sanoここから*/
 
 		.left1{
-		padding-left:12%;
+    padding-left: 12%;
+    padding-top: 50px;
 		}
 
 
@@ -705,14 +756,16 @@ pd-cart{
 		}
 
 
-		h4 {
+		h5 {
     padding-left: 189px;
     float: left;
     margin-top: 40px;
+    font-size:13px;
 }
 
 		.center{
 			text-align:center;
+			margin-top:80px;
 		}
 
 .buyer {
@@ -723,4 +776,46 @@ pd-cart{
 .buyeritem {
     margin-top: 40px;
     padding-top: 30px;
+}
+
+.cart-price {
+	float: right;
+	border-bottom: solid black 1px;
+	width: auto;
+	margin-right: 300px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+
+
+.address{
+	float:left;
+	width:28%;
+	margin-right:20px;
+	padding: 0.5em;
+	background-color: #f4f4f4;
+	border-left: solid 5px #464646;
+	box-shadow: 2px 2px 4px gray;
+}
+.left1:after{
+	clear:both;
+	display:block;
+	content:"";
+}
+.sm-info{
+	    margin-top: 40px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 100px;
+}
+
+.changeinfo {
+    margin-top: 49px;
+    text-align: center;
+}
+
+.sm-next {
+    text-align: center;
+    margin-top: 15px;
 }
